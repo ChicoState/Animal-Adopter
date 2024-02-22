@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Adopt from ".pages/adopt";
-import Rehome from ".pages/rehome";
+import Adopt from "./pages/adopt.js";
+import Rehome from "./pages/rehome.js";
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
