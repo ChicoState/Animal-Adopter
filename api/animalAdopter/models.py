@@ -6,4 +6,4 @@ class AnimalModel(models.Model):
     price = models.CharField(max_length = 280)
     type = models.CharField(max_length = 280)
     location = models.CharField(max_length = 280)
-    image = models.ImageField(max_length = 144)
+    #image = models.ImageField(max_length = 144)
