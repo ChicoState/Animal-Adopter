@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+div.kitty {
+  width: 80%;
+  font-size: 20px;
+}
+
+div.kitty p {
+  
+}
+
+div.desc {
+  position: absolute;
+  text-align: center;
+  margin: 10px;
+  right: 20%;
+  left: 28%;
+}
+
+img {
+  max-width: 40%;  
+  height: auto;
+  float: left;
+}
+
+
+
