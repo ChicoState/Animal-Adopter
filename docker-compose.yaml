@@ -5,7 +5,7 @@ services:
       - "8000:8000"
     volumes:
       - ./api:/api
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate && DJANGO_SUPERUSER_PASSWORD=admin python manage.py createsuperuser --username=admin --email=admin@gmail.com --noinput && python manage.py runserver 0.0.0.0:8000"
 
   web:
     build: ./frontend
