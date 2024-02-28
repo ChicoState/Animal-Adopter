@@ -322,4 +322,7 @@ cython_debug/
 
 # Support for Project snippet scope
 
+# to exclude Axios-related node_modules
+/node_modules
+
 # End of https://www.toptal.com/developers/gitignore/api/python,pythonvanilla,visualstudiocode,pydev,pycharm
