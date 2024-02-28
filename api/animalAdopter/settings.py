@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['0.0.0.0', 'http://localhost:8000/', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'animalAdopter',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
