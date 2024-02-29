@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Adopt from "./pages/adopt.js";
 import Rehome from "./pages/rehome.js";
-import axios from 'axios';
+import axios from '../axios';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
