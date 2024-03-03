@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import index
+from .views import get_animal_models
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
+    path('api/animalAdopter/models', get_animal_models, name='get_animal_models'),
 ]
+
