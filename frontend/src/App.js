@@ -8,7 +8,7 @@ function App() {
 	const [pet, setPet] = useState([]);
 
 	useEffect(() => {
-		axios.get('http://localhosts:3000/api/animalAdopter/models').then(res => {
+		axios.get('http://localhost:3000/api/animalAdopter/models').then(res => {
 			console.log(res)
 			setPet(res.data.pet);
 		});
