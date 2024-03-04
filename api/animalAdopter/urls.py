@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from .views import index
 from .views import get_animal_models
+from .views import create_animal_model
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
     path('api/animalAdopter/models', get_animal_models, name='get_animal_models'),
+    path('api/animalAdopter/create_animal_model', create_animal_model, name='create_animal_model'),
 ]
-

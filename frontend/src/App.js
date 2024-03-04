@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import FormComponent from './components/FormComponent';
 
 function App() { 
   const [pet, setPet] = useState([]);
@@ -33,6 +34,7 @@ function App() {
               <h4>Pet List</h4>
             </div>
             <div className="card-body">
+            <FormComponent />
               {pet.length > 0 ? (
                 <table className="table table-striped">
                   <thead>
@@ -53,7 +55,12 @@ function App() {
                         <td>{item.price}</td>
                         <td>{item.type}</td>
                         <td>{item.location}</td>
-                        <td>{item.image}</td>
+                        <td>
+                          {item.image ? (
+                          <img src={`/api/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />
+                          ) : (<p>No image available</p>
+                          )}
+                          </td>
                       </tr>
                     ))}
                   </tbody>
