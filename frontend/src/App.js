@@ -44,6 +44,7 @@ function App() {
                       <th>Price</th>
                       <th>Type</th>
                       <th>Location</th>
+		      <th>Contact</th>
                       <th>Image</th>
                     </tr>
                   </thead>
@@ -55,6 +56,7 @@ function App() {
                         <td>{item.price}</td>
                         <td>{item.type}</td>
                         <td>{item.location}</td>
+			<td>{item.contact}</td>
                         <td>
                           {item.image ? (
                           <img src={`/api/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />

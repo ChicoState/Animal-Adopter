@@ -10,6 +10,7 @@ const YourFormComponent = () => {
     price: '',
     type: '',
     location: '',
+    contact: '',
     image: null, // Initialize the image field as null
   });
 
@@ -32,7 +33,7 @@ const YourFormComponent = () => {
   
     try {
       console.log('Sending request...');
-      const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model/', data);
+      const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model', data);
       console.log('Data saved successfully. Animal ID:', response.data.id);
     } catch (error) {
       console.error('Error saving data:', error);
@@ -65,6 +66,11 @@ const YourFormComponent = () => {
       <label>
         Location:
         <input type="text" name="location" value={formData.location} onChange={handleChange} />
+      </label>
+
+      <label>
+         Contact:
+         <input type="text" name="contact" value={formData.contact} onChang    e={handleChange} />
       </label>
 
       <label>

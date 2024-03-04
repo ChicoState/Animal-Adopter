@@ -9,4 +9,5 @@ class AnimalModel(models.Model):
     price = models.CharField(max_length = 280)
     type = models.CharField(max_length = 280)
     location = models.CharField(max_length = 280)
+    contact = models.CharField(max_length = 280)
     image = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
