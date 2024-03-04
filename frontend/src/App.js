@@ -55,12 +55,16 @@ function App() {
                         <td>{item.price}</td>
                         <td>{item.type}</td>
                         <td>{item.location}</td>
+<<<<<<< Updated upstream
                         <td>
                           {item.image ? (
                           <img src={`/api/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />
                           ) : (<p>No image available</p>
                           )}
                           </td>
+=======
+                        <td><img src="{% static 'http://127.0.0.1:8000/api/${item.image}' %}" alt={`Image of ${item.type}`} /></td>
+>>>>>>> Stashed changes
                       </tr>
                     ))}
                   </tbody>
