@@ -8,6 +8,7 @@ const YourFormComponent = () => {
     price: '',
     type: '',
     location: '',
+    contact: '',
     image: null, // Initialize the image field as null
   });
 
@@ -63,6 +64,11 @@ const YourFormComponent = () => {
       <label>
         Location:
         <input type="text" name="location" value={formData.location} onChange={handleChange} />
+      </label>
+
+      <label>
+         Contact:
+         <input type="text" name="contact" value={formData.contact} onChang    e={handleChange} />
       </label>
 
       <label>
