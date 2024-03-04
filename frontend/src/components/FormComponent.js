@@ -1,5 +1,3 @@
-// YourFormComponent.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -32,7 +30,7 @@ const YourFormComponent = () => {
   
     try {
       console.log('Sending request...');
-      const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model/', data);
+      const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model', data);
       console.log('Data saved successfully. Animal ID:', response.data.id);
     } catch (error) {
       console.error('Error saving data:', error);
