@@ -1,7 +1,7 @@
 import React from "react";
 import FormComponent from '../components/FormComponent';
 
-const AdoptionFormPage = () => {
+const RehomeFormPage = () => {
   return (
     <div style={{ padding: '45px', textAlign: 'center' }}>
       <h1 style={{ marginBottom: '20px' }}>Add a Pet to be Adopted</h1>
@@ -12,4 +12,4 @@ const AdoptionFormPage = () => {
   );
 };
 
-export default AdoptionFormPage;
+export default RehomeFormPage;

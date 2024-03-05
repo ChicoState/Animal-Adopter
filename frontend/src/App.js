@@ -12,22 +12,25 @@ function PetList({ pet }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {pet.map((item, index) => (
-        <div key={index} className="pet-box" style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ marginRight: '20px' }}>
-            <h5>Name: {item.name}</h5>
-            <p>Type: {item.type}</p>
-            <p>Age: {item.age}</p>
-            <p>Gender: {item.gender}</p>
-            <p>Price: {item.price}</p>
-            <p>Location: {item.location}</p>
-            <p>Contact: {item.contact}</p>
+        <div key={index} className="pet-box-container" style={{ border: '5px solid #ccc', padding: '10px', marginBottom: '20px' }}>
+          <div className="pet-box" style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ marginRight: '20px' }}>
+              <h5>Name: {item.name}</h5>
+              <p>Type: {item.type}</p>
+              <p>Age: {item.age}</p>
+              <p>Gender: {item.gender}</p>
+              <p>Price: {item.price}</p>
+              <p>Location: {item.location}</p>
+              <p>Contact: {item.contact}</p>
+            </div>
+            <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />
           </div>
-          <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />
         </div>
       ))}
     </div>
   );
 }
+
 
 function About() {
   return <h2>About Page</h2>;

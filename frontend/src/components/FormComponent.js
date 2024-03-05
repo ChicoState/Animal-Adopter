@@ -40,44 +40,44 @@ const YourFormComponent = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
       <label>
-        Age:
-        <input type="text" name="age" value={formData.age} onChange={handleChange} />
-      </label>
-
-      <label>
-        Gender:
-        <input type="text" name="gender" value={formData.gender} onChange={handleChange} />
-      </label>
-
-      <label>
-        Price:
-        <input type="text" name="price" value={formData.price} onChange={handleChange} />
-      </label>
-
-      <label>
-        Type:
-        <input type="text" name="type" value={formData.type} onChange={handleChange} />
-      </label>
-
-      <label>
-        Location:
-        <input type="text" name="location" value={formData.location} onChange={handleChange} />
-      </label>
-
-      <label>
-        Contact:
-        <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
-      </label>
-
-      <label>
-        Name:
+        Name: 
         <input type="text" name="name" value={formData.name} onChange={handleChange} />
       </label>
 
       <label>
-        Image:
+        Age: 
+        <input type="text" name="age" value={formData.age} onChange={handleChange} />
+      </label>
+
+      <label>
+        Gender: 
+        <input type="text" name="gender" value={formData.gender} onChange={handleChange} />
+      </label>
+
+      <label>
+        Price: 
+        <input type="text" name="price" value={formData.price} onChange={handleChange} />
+      </label>
+
+      <label>
+        Type: 
+        <input type="text" name="type" value={formData.type} onChange={handleChange} />
+      </label>
+
+      <label>
+        Location: 
+        <input type="text" name="location" value={formData.location} onChange={handleChange} />
+      </label>
+
+      <label>
+        Contact: 
+        <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
+      </label>
+
+      <label>
+        Image: 
         <input type="file" name="image" onChange={handleChange} />
       </label>
 
