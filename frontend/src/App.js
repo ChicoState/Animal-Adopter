@@ -5,6 +5,7 @@ import AdoptPage from './pages/adopt';
 import RehomePage from './pages/rehome';
 import Navbar from './components/NavbarComponent';
 
+
 import './App.css';
 
 function PetList({ pet }) {
@@ -21,11 +22,7 @@ function PetList({ pet }) {
             <p>Location: {item.location}</p>
             <p>Contact: {item.contact}</p>
           </div>
-          {item.image ? (
-            <img src={`http://127.0.0.1:8000/api/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />
-          ) : (
-            <p>No image available</p>
-          )}
+          <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />
         </div>
       ))}
     </div>

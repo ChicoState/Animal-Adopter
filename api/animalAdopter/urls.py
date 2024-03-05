@@ -19,6 +19,8 @@ from django.urls import path
 from .views import index
 from .views import get_animal_models
 from .views import create_animal_model
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,3 +28,5 @@ urlpatterns = [
     path('api/animalAdopter/models', get_animal_models, name='get_animal_models'),
     path('api/animalAdopter/create_animal_model', create_animal_model, name='create_animal_model'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

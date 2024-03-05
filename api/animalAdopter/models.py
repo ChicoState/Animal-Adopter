@@ -1,7 +1,7 @@
 from django.db import models
 
 def animal_image_upload(instance, filename):
-    return f'api/animalAdopter/{filename}'
+    return f'animal_images/{filename}'
 
 class AnimalModel(models.Model):
     name = models.CharField(max_length = 280, default = '')
