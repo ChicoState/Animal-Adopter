@@ -9,7 +9,8 @@ const YourFormComponent = () => {
     type: '',
     location: '',
     contact: '',
-    image: null, // Initialize the image field as null
+    name: '',
+    image: null,
   });
 
   const handleChange = (e) => {
@@ -23,12 +24,12 @@ const YourFormComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Submit button clicked');
-  
+
     const data = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
       data.append(key, value);
     });
-  
+
     try {
       console.log('Sending request...');
       const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model', data);
@@ -37,7 +38,6 @@ const YourFormComponent = () => {
       console.error('Error saving data:', error);
     }
   };
-  
 
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -67,8 +67,13 @@ const YourFormComponent = () => {
       </label>
 
       <label>
-         Contact:
-         <input type="text" name="contact" value={formData.contact} onChang    e={handleChange} />
+        Contact:
+        <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
+      </label>
+
+      <label>
+        Name:
+        <input type="text" name="name" value={formData.name} onChange={handleChange} />
       </label>
 
       <label>

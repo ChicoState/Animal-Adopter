@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
-import FormComponent from './components/FormComponent';
 import AdoptPage from './pages/adopt';
 import RehomePage from './pages/rehome';
+import Navbar from './components/NavbarComponent';
+
+import './App.css';
 
 function PetList({ pet }) {
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {pet.map((item, index) => (
-        <div key={index} className="pet-box">
-          <h5>{item.type}</h5>
-          <p>Age: {item.age}</p>
-          <p>Gender: {item.gender}</p>
-          <p>Price: {item.price}</p>
-          <p>Location: {item.location}</p>
+        <div key={index} className="pet-box" style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ marginRight: '20px' }}>
+            <h5>Name: {item.name}</h5>
+            <p>Type: {item.type}</p>
+            <p>Age: {item.age}</p>
+            <p>Gender: {item.gender}</p>
+            <p>Price: {item.price}</p>
+            <p>Location: {item.location}</p>
+            <p>Contact: {item.contact}</p>
+          </div>
           {item.image ? (
             <img src={`http://127.0.0.1:8000/api/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />
           ) : (
@@ -55,36 +60,14 @@ function App() {
 
   return (
     <Router>
-      <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link className="navbar-brand" to="/">Pet Adoption</Link>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/adopt">Adopt</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/rehome">Rehome</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/about">About</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+      <div>
+        <Navbar />
         <Switch>
           <Route path="/" exact>
             <div className="row">
               <div className="col-md-12">
                 <div className="card">
-                  <div className="card-header">
-                    <h4>Pet List</h4>
-                  </div>
-                  <div className="card-body" style={{ overflow: 'auto', maxHeight: '400px' }}>
-                    <FormComponent />
+                  <div className="card-body" style={{ overflow: 'auto', paddingTop: '70px' }}>
                     <PetList pet={pet} />
                   </div>
                 </div>

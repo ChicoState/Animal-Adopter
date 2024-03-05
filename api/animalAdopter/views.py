@@ -19,17 +19,18 @@ def get_animal_models(request):
     return JsonResponse({'pet': list(animal_models)})
 
 
-
-@csrf_exempt  # Use this decorator for simplicity. In production, consider proper CSRF protection.
+@csrf_exempt
 def create_animal_model(request):
     if request.method == 'POST':
-        # Assuming the form fields are named age, gender, price, type, location, image
+        # Assuming the form fields are named age, gender, price, type, location, contact, name, image
         age = request.POST.get('age')
         gender = request.POST.get('gender')
         price = request.POST.get('price')
         type = request.POST.get('type')
         location = request.POST.get('location')
-        
+        contact = request.POST.get('contact')
+        name = request.POST.get('name')
+
         # Assuming you are storing the image file in the request.FILES dictionary
         image = request.FILES.get('image')
 
@@ -40,6 +41,8 @@ def create_animal_model(request):
             price=price,
             type=type,
             location=location,
+            contact=contact,
+            name=name,
             image=image
         )
         animal.save()

@@ -1,3 +1,9 @@
+/* App.css */
+
+.container {
+  margin-top: 80px; /* Adjust the value based on the height of your navbar */
+}
+
 .App {
   text-align: center;
 }
@@ -58,10 +64,13 @@ div.desc {
 }
 
 img {
-  max-width: 40%;  
+  max-width: 40%;
   height: auto;
   float: left;
 }
 
-
-
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
