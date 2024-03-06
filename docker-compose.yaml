@@ -11,6 +11,7 @@ services:
                       && python manage.py runserver 0.0.0.0:8000"
 
   web:
+    stdin_open: true
     build: ./frontend
     ports:
       - "3000:3000"
