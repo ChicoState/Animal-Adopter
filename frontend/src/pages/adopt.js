@@ -1,14 +1,13 @@
 import React from "react";
 
-const About = () => {
-		return (
-					<div>
-						<h1>
-							GeeksforGeeks is a Computer Science portal
-							for geeks.
-						</h1>
-					</div>
-				);
+const AdoptionFormPage = () => {
+  return (
+    <div style={{ padding: '45px', textAlign: 'center' }}>
+      <h1 style={{ marginBottom: '20px' }}>Apply to Adopt a Pet</h1>
+      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      </div>
+    </div>
+  );
 };
 
-export default About;
+export default AdoptionFormPage;
