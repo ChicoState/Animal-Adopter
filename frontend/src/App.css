@@ -107,10 +107,12 @@ ul {
   display: flex;
   flex-direction: row;
   border: 5px solid #529873;
+  border-radius: 15px;
   padding: 10px;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
 
 /* The image itself */
@@ -119,6 +121,7 @@ ul {
   max-height: 150px;
   display: block;
   border: 3px solid #529873;
+  border-radius: 15px;
   margin-right: 10px;
 }
 
