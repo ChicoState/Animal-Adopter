@@ -11,12 +11,16 @@ export const Nav = styled.nav`
   padding: 0 20px;
   z-index: 12;
   width: 97.5%;
+  font-family: 'SiteFont';
+  font-weight: normal;
 `;
 
 export const WebsiteName = styled.h1`
   color: #dfeeeb; /* Change the color to your preference */
   font-size: 24px; /* Adjust the font size to your preference */
   margin-right: 20px; /* Add some right margin for spacing */
+  font-family: 'SiteFont';
+  font-weight: normal;
 `;
 
 export const NavLink = styled(Link)`
@@ -27,6 +31,8 @@ export const NavLink = styled(Link)`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+  font-family: 'SiteFont';
+  font-weight: normal;
   &.active {
     color: #6dcb99;
   }

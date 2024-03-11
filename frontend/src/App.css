@@ -66,7 +66,7 @@ div.desc {
 }
 
 img {
-  max-width: 40%;
+  max-width: 100%;
   height: auto;
   float: left;
 }
@@ -77,8 +77,60 @@ ul {
   margin: 0;
 }
 
+/* Font retrieval */
+/* Regular */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('./fonts/lt_saeada/LTSaeada-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+/* Bold */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('./fonts/lt_saeada/LTSaeada-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+/* Layout of the pet-boxs together */
 .pet-box-container {
+  font-family: 'SiteFont';
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Layout of the inside of each pet-box */
+.pet-box-container .pet-box {
+  width: 400px;
+  height: 250px;
+  display: flex;
+  flex-direction: row;
   border: 5px solid #529873;
   padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-bottom: 20px;
+}
+
+/* The image itself */
+.pet-box-container img {
+  max-width: 200px;
+  max-height: 150px;
+  display: block;
+  border: 3px solid #529873;
+  margin-right: 10px;
+}
+
+/* The header */
+.pet-box-container h5 {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Each element of the body */
+.pet-box-container .pet-box p {
+  font-weight: normal;
+  margin: 5px 0;
 }

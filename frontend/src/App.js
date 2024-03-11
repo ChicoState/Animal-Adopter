@@ -10,20 +10,20 @@ import './App.css';
 
 function PetList({ pet }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className="pet-box-container">
       {pet.map((item, index) => (
-        <div key={index} className="pet-box-container">
-          <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} style={{ maxWidth: '200px', maxHeight: '200px' }} />
-          <div className="pet-box" style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ marginRight: '20px' }}>
-              <h5>{item.name}</h5>
-              <p>Type: {item.type}</p>
-              <p>Age: {item.age}</p>
-              <p>Gender: {item.gender}</p>
-              <p>Price: {item.price}</p>
-              <p>Location: {item.location}</p>
-              <p>Contact: {item.contact}</p>
-            </div>
+        <div key={index} className="pet-box">
+          <div className="image-container">
+            <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} />
+          </div>
+          <div className="pet-info">
+            <h5>{item.name}</h5>
+            <p>Type: {item.type}</p>
+            <p>Age: {item.age}</p>
+            <p>Gender: {item.gender}</p>
+            <p>Price: {item.price}</p>
+            <p>Location: {item.location}</p>
+            <p>Contact: {item.contact}</p>
           </div>
         </div>
       ))}
