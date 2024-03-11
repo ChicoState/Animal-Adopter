@@ -103,6 +103,7 @@ ul {
 .pet-box-container .pet-box {
   width: 400px;
   height: 250px;
+  background-color: #c5d6d2;
   display: flex;
   flex-direction: row;
   border: 5px solid #529873;
