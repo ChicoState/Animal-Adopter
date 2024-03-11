@@ -28,6 +28,10 @@
   color: white;
 }
 
+body {
+  background-color: #dfeeeb;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -74,7 +78,7 @@ ul {
 }
 
 .pet-box-container {
-  border: 2px solid #ccc;
+  border: 5px solid #529873;
   padding: 10px;
   margin-bottom: 20px;
 }
