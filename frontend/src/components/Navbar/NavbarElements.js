@@ -3,7 +3,8 @@ import { FaBars } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 
 export const Nav = styled.nav`
-  position: fixed;
+  position: relative;
+  margin-bottom: -40px;
   background: #00524c;
   height: 85px;
   display: flex;

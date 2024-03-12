@@ -93,7 +93,6 @@ ul {
 
 /* Layout of the pet-boxs together */
 .pet-box-container {
-  margin-top: 20px;
   font-family: 'SiteFont';
   display: flex;
   align-items: flex-start;
