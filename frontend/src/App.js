@@ -17,10 +17,12 @@ function PetList({ pet }) {
             <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} />
           </div>
           <div className="pet-info">
-            <h5>{item.name}</h5>
+            <div className="name-gender">
+              <h5>{item.name}</h5>
+              <p>{item.gender}</p>
+            </div>
             <p>Type: {item.type}</p>
             <p>Age: {item.age}</p>
-            <p>Gender: {item.gender}</p>
             <p>Price: {item.price}</p>
             <p>Location: {item.location}</p>
             <p>Contact: {item.contact}</p>

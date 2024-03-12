@@ -3,6 +3,7 @@ Link to site where pallet was found: https://www.color-hex.com/color-palette/104
 Navbar background: #00524c
 Site background: #dfeeeb
 Navbar text: #dfeeeb
+Navbar text background: #529873
 Active page text: #529873
 Pet card borders: #529873
 Pet card background: #c5d6d2
