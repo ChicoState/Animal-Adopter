@@ -13,7 +13,7 @@ const Navbar = () => {
             <Bars />
             <div className="collapse navbar-collapse" id="navbarNav">
               <NavMenu style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <NavLink to="/" activeClassName="active" className="nav-link">Home</NavLink>
+                <NavLink exact to="/" activeClassName="active" className="nav-link">Home</NavLink>
                 <NavLink to="/adopt" activeClassName="active" className="nav-link">Adopt</NavLink>
                 <NavLink to="/rehome" activeClassName="active" className="nav-link">Rehome</NavLink>
               </NavMenu>
