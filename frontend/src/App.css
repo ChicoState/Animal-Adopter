@@ -132,6 +132,12 @@ ul {
   flex-direction: row;
 }
 
+.pet-box-container .gender-img img{
+  max-width: 20px;
+  max-height: 20px;
+  border: 2px solid #529873;
+}
+
 /* The header */
 .pet-box-container h5 {
   font-weight: bold;

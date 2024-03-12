@@ -19,7 +19,15 @@ function PetList({ pet }) {
           <div className="pet-info">
             <div className="name-gender">
               <h5>{item.name}</h5>
-              <p>{item.gender}</p>
+              <div className="gender-img">
+                {item.gender === "male" ? (
+                  <img src={`http://127.0.0.1:8000/media/genderSymbols/male.png`} alt={item.gender} />
+                ) : item.gender === "female" ? (
+                  <img src={`http://127.0.0.1:8000/media/genderSymbols/female.png`} alt={item.gender} />
+                ) : (
+                  <img src={`http://127.0.0.1:8000/media/genderSymbols/unknown.png`} alt={item.gender} />
+                )}
+              </div>
             </div>
             <p>Type: {item.type}</p>
             <p>Age: {item.age}</p>
