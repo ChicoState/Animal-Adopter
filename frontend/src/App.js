@@ -10,20 +10,36 @@ import './App.css';
 
 function PetList({ pet }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className="pet-box-container">
       {pet.map((item, index) => (
-        <div key={index} className="pet-box-container" style={{ border: '5px solid #ccc', padding: '10px', marginBottom: '20px' }}>
-          <div className="pet-box" style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ marginRight: '20px' }}>
-              <h5>Name: {item.name}</h5>
-              <p>Type: {item.type}</p>
-              <p>Age: {item.age}</p>
-              <p>Gender: {item.gender}</p>
-              <p>Price: {item.price}</p>
-              <p>Location: {item.location}</p>
-              <p>Contact: {item.contact}</p>
+        <div key={index} className="pet-box">
+          <div className="top">
+            <div className="image-container">
+              <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} />
             </div>
-            <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />
+            <div className="pet-info">
+              <div className="name-gender">
+                <h5>{item.name}</h5>
+                <div className="gender-img">
+                  {item.gender === "male" ? (
+                    <img src={`http://127.0.0.1:8000/media/genderSymbols/male.png`} alt={item.gender} />
+                  ) : item.gender === "female" ? (
+                    <img src={`http://127.0.0.1:8000/media/genderSymbols/female.png`} alt={item.gender} />
+                  ) : (
+                    <img src={`http://127.0.0.1:8000/media/genderSymbols/unknown.png`} alt={item.gender} />
+                  )}
+                </div>
+              </div>
+            </div>
+            <p>Breed: {item.type}</p>
+            <p>Age: {item.age}</p>
+            <p>Price: ${item.price}</p>
+            <p>Location: {item.location}</p>
+            <p>Contact: {item.contact}</p>
+          </div>
+          <div className="pet-description">
+            <p>Tags: these will be tags of the pet</p>
+            <p>Description: this will be a description of the pet</p>
           </div>
         </div>
       ))}

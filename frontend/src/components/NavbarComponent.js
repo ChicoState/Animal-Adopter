@@ -1,18 +1,24 @@
 import React from "react";
-import { Nav, NavLink, Bars, NavMenu, WebsiteName } from "./Navbar/NavbarElements";
+import { Nav, LogoImg, NavLink, Bars, NavMenu, WebsiteName } from "./Navbar/NavbarElements";
+import Logo from "../logo/Logo.png";
 
 const Navbar = () => {
   return (
     <>
       <Nav>
-        <WebsiteName>Animal Adopter</WebsiteName>
-        <Bars />
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <NavMenu style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-            <NavLink to="/" style={{ padding: '15px' }}>Home</NavLink>
-            <NavLink to="/adopt" style={{ padding: '15px' }}>Adopt</NavLink>
-            <NavLink to="/rehome" style={{ padding: '15px' }}>Rehome</NavLink>
-          </NavMenu>
+        <div className="navbar-components-container" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+          <LogoImg src={Logo} alt="Logo" />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <WebsiteName>Animal Adopter</WebsiteName>
+            <Bars />
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <NavMenu style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <NavLink exact to="/" activeClassName="active" className="nav-link">Home</NavLink>
+                <NavLink to="/adopt" activeClassName="active" className="nav-link">Adopt</NavLink>
+                <NavLink to="/rehome" activeClassName="active" className="nav-link">Rehome</NavLink>
+              </NavMenu>
+            </div>
+          </div>
         </div>
       </Nav>
     </>

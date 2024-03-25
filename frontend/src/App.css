@@ -28,6 +28,10 @@
   color: white;
 }
 
+body {
+  background-color: #dfeeeb;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -62,7 +66,7 @@ div.desc {
 }
 
 img {
-  max-width: 40%;
+  max-width: 100%;
   height: auto;
   float: left;
 }
@@ -73,8 +77,77 @@ ul {
   margin: 0;
 }
 
+/* Font retrieval */
+/* Regular */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('./fonts/lt_saeada/LTSaeada-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+/* Bold */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('./fonts/lt_saeada/LTSaeada-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+/* Layout of the pet-boxs together */
 .pet-box-container {
-  border: 2px solid #ccc;
+  font-family: 'SiteFont';
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Layout of the inside of each pet-box */
+.pet-box-container .pet-box {
+  width: 400px;
+  height: 250px;
+  background-color: #c5d6d2;
+  display: flex;
+  flex-direction: column;
+  border: 5px solid #529873;
+  border-radius: 15px;
   padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+/* The image itself */
+.pet-box-container img {
+  max-width: 200px;
+  max-height: 150px;
+  display: block;
+  border: 3px solid #529873;
+  border-radius: 15px;
+  margin-right: 10px;
+}
+
+/* Header and gender */
+.pet-box-container .name-gender {
+  display: flex;
+  flex-direction: row;
+}
+
+.pet-box-container .gender-img img{
+  max-width: 20px;
+  max-height: 20px;
+  border: 2px solid #529873;
+}
+
+/* The header */
+.pet-box-container h5 {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+/* Each element of the body */
+.pet-box-container .pet-box p {
+  font-weight: normal;
+  margin: 5px 0;
 }
