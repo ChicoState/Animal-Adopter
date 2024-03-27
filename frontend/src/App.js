@@ -38,8 +38,8 @@ function PetList({ pet }) {
             <p>Contact: {item.contact}</p>
           </div>
           <div className="pet-description">
-            <p>Tags: these will be tags of the pet</p>
-            <p>Description: this will be a description of the pet</p>
+            <p>Tags: {item.specialNeeds}</p>
+            <p>Description: {item.about}</p>
           </div>
         </div>
       ))}
