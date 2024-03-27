@@ -61,7 +61,7 @@ const YourFormComponent = () => {
         <input type="radio" name="gender" value="female" checked={formData.gender === "female"} onChange={handleChange} /> Female
       </label>
       <label>
-        <input type="radio" name="gender" value="Unknown"checked={formData.gender === "unknown"} onChange={handleChange} /> Unknown
+        <input type="radio" name="gender" value="unknown" checked={formData.gender === "unknown"} onChange={handleChange} /> Unknown
       </label>
       </div>
 
@@ -97,12 +97,18 @@ const YourFormComponent = () => {
       <label>
         Special Accommodations:
       </label> 
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
-        <label> Doesn't like kids.</label>
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
-        <label> Doesn't like men.</label>
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
-        <label> Very Energetic.</label>
+      <label>
+        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} /> Doesn't like kids.
+      </label>
+      <label>
+        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} /> Doesn't like men. 
+      </label>
+      <label>
+        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} /> Very Energetic.
+      </label>
+      <label>
+        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} /> Is Spayed or Nuetered.
+      </label>
     
       
       <label>

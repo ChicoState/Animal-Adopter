@@ -4,7 +4,7 @@ import { NavLink as Link } from "react-router-dom";
 
 export const Nav = styled.nav`
   position: fixed;
-  background: #ffb3ff;
+  background: #58728a;
   height: 65px;
   display: flex;
   justify-content: space-between;
@@ -14,13 +14,13 @@ export const Nav = styled.nav`
 `;
 
 export const WebsiteName = styled.h1`
-  color: #4d4dff; /* Change the color to your preference */
+  color: #c8bdb7; /* Change the color to your preference */
   font-size: 24px; /* Adjust the font size to your preference */
   margin-right: 20px; /* Add some right margin for spacing */
 `;
 
 export const NavLink = styled(Link)`
-  color: #808080;
+  color: #c8bdb7;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -28,13 +28,13 @@ export const NavLink = styled(Link)`
   height: 100%;
   cursor: pointer;
   &.active {
-    color: #4d4dff;
+    color: #f9f5e9;
   }
 `;
 
 export const Bars = styled(FaBars)`
   display: none;
-  color: #808080;
+  color: #c8bdb7;
   @media screen and (max-width: 768px) {
     display: block;
     position: absolute;
