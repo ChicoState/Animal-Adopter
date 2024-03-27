@@ -71,10 +71,6 @@ const YourFormComponent = () => {
             Price: 
             <input type="text" name="price" value={formData.price} onChange={handleChange} />
           </label>
-          <label>
-            Type: 
-            <input type="text" name="type" value={formData.type} onChange={handleChange} />
-          </label>
         <label>
           Type: 
           <select name="type" value={formData.type} onChange={handleChange}>
@@ -96,19 +92,17 @@ const YourFormComponent = () => {
             Contact: 
             <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
           </label>
+        <div>
           <label>
-            Image: 
-            <input type="file" name="image" onChange={handleChange} />
-          </label>
-        <label>
-          Special Accommodations:
-        </label> 
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
-        <label> Doesn't like kids.</label>
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
-        <label> Doesn't like men.</label>
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
-        <label> Very Energetic.</label>
+            Special Accommodations:
+          </label> 
+          <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
+          <label> Doesn't like kids.</label>
+          <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
+          <label> Doesn't like men.</label>
+          <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
+          <label> Very Energetic.</label>
+        </div>
         <label>
           About: 
           <input type="text" name="about" value={formData.about} onChange={handleChange} />
