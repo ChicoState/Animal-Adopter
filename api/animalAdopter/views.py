@@ -18,6 +18,10 @@ def get_animal_models(request):
     animal_models = AnimalModel.objects.all().values()
     return JsonResponse({'pet': list(animal_models)})
 
+def get_user_models(request):
+    user_models = UserModel.objects.all().values()
+    return JsonResponse({'user': list(user_models)})
+
 
 @csrf_exempt
 def create_animal_model(request):

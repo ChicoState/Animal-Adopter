@@ -1,6 +1,6 @@
 import React from "react";
 
-const AdoptionFormPage = () => {
+const LoginPage = () => {
   return (
     <div style={{ padding: '45px', textAlign: 'center' }}>
       <h1 style={{ marginBottom: '20px' }}>Apply to Adopt a Pet </h1>
@@ -10,4 +10,4 @@ const AdoptionFormPage = () => {
   );
 };
 
-export default AdoptionFormPage;
+export default LoginPage;
