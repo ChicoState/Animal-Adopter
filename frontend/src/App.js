@@ -22,8 +22,10 @@ function PetList({ pet }) {
               <p>Price: {item.price}</p>
               <p>Location: {item.location}</p>
               <p>Contact: {item.contact}</p>
+              <p>Special Needs: {item.specialNeeds}</p>
+              <p>About: {item.about}</p>
             </div>
-            <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} style={{ maxWidth: '200px' }} />
+            <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} style={{ maxWidth:  '200px' }} />
           </div>
         </div>
       ))}

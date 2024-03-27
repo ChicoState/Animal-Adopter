@@ -10,6 +10,8 @@ const YourFormComponent = () => {
     location: '',
     contact: '',
     name: '',
+    specialNeeds: '',
+    about: '',
     image: null,
   });
 
@@ -45,16 +47,23 @@ const YourFormComponent = () => {
         Name: 
         <input type="text" name="name" value={formData.name} onChange={handleChange} />
       </label>
-
-      <label>
-        Age: 
-        <input type="text" name="age" value={formData.age} onChange={handleChange} />
+      <meta name="viewport" content= "width=device-width, intitial-sacle=1.0"></meta>
+      <label for="birthday"> 
+        Select Animals birthday:
+        <input type="date" name="age" value={formData.age} onChange={handleChange} />
       </label>
-
+      <div>
       <label>
         Gender: 
-        <input type="text" name="gender" value={formData.gender} onChange={handleChange} />
+        <input type="radio" name="gender" value="male" checked={formData.gender === "male"} onChange={handleChange} /> Male
       </label>
+      <label> 
+        <input type="radio" name="gender" value="female" checked={formData.gender === "female"} onChange={handleChange} /> Female
+      </label>
+      <label>
+        <input type="radio" name="gender" value="Unknown"checked={formData.gender === "unknown"} onChange={handleChange} /> Unknown
+      </label>
+      </div>
 
       <label>
         Price: 
@@ -63,7 +72,16 @@ const YourFormComponent = () => {
 
       <label>
         Type: 
-        <input type="text" name="type" value={formData.type} onChange={handleChange} />
+        <select name="type" value={formData.type} onChange={handleChange}>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="rodent">Rodent</option>
+          <option value="fish">Fish</option>
+          <option value="bird">Bird</option>
+          <option value="reptile">Reptile</option>
+          <option value="horse">Horse</option>
+          <option value="other">Other</option>
+        </select>
       </label>
 
       <label>
@@ -74,6 +92,22 @@ const YourFormComponent = () => {
       <label>
         Contact: 
         <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
+      </label>
+
+      <label>
+        Special Accommodations:
+      </label> 
+        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
+        <label> Doesn't like kids.</label>
+        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
+        <label> Doesn't like men.</label>
+        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
+        <label> Very Energetic.</label>
+    
+      
+      <label>
+        About: 
+        <input type="text" name="about" value={formData.about} onChange={handleChange} />
       </label>
 
       <label>
