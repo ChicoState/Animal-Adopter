@@ -53,7 +53,12 @@ const YourFormComponent = () => {
 
       <label>
         Gender: 
-        <input type="text" name="gender" value={formData.gender} onChange={handleChange} />
+        <select name="gender" value={formData.gender} onChange={handleChange}>
+          <option>Default</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="unknown">Unknown</option>
+        </select>
       </label>
 
       <label>
