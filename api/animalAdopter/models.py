@@ -12,3 +12,12 @@ class AnimalModel(models.Model):
     location = models.CharField(max_length = 280)
     contact = models.CharField(max_length = 280, default = '')
     image = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
+
+
+class UserModel(models.Model):
+    name = models.CharField(max_length = 280, default = '')
+    age = models.CharField(max_length = 280)
+    gender = models.CharField(max_length = 280)
+    location = models.CharField(max_length = 280)
+    contact = models.CharField(max_length = 280, default = '')
+    isShelter = models.CharField(max_length = 280, default = 'no')

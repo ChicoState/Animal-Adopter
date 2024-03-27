@@ -13,6 +13,7 @@ const Navbar = () => {
             <NavLink to="/" style={{ padding: '15px' }}>Home</NavLink>
             <NavLink to="/adopt" style={{ padding: '15px' }}>Adopt</NavLink>
             <NavLink to="/rehome" style={{ padding: '15px' }}>Rehome</NavLink>
+            <NavLink to="/createProfile" style={{ padding: '15px' }}>Create Profile</NavLink>
           </NavMenu>
         </div>
       </Nav>
