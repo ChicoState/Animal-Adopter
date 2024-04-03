@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import './FormComponent.css';
+
 const YourFormComponent = () => {
   const [formData, setFormData] = useState({
     age: '',
@@ -10,6 +12,8 @@ const YourFormComponent = () => {
     location: '',
     contact: '',
     name: '',
+    specialNeeds: '',
+    about: '',
     image: null,
   });
 
@@ -40,54 +44,82 @@ const YourFormComponent = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-      <label>
-        Name: 
-        <input type="text" name="name" value={formData.name} onChange={handleChange} />
-      </label>
-
-      <label>
-        Age: 
-        <input type="text" name="age" value={formData.age} onChange={handleChange} />
-      </label>
-
-      <label>
-        Gender: 
-        <select name="gender" value={formData.gender} onChange={handleChange}>
-          <option>Default</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="unknown">Unknown</option>
-        </select>
-      </label>
-
-      <label>
-        Price: 
-        <input type="text" name="price" value={formData.price} onChange={handleChange} />
-      </label>
-
-      <label>
-        Type: 
-        <input type="text" name="type" value={formData.type} onChange={handleChange} />
-      </label>
-
-      <label>
-        Location: 
-        <input type="text" name="location" value={formData.location} onChange={handleChange} />
-      </label>
-
-      <label>
-        Contact: 
-        <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
-      </label>
-
-      <label>
-        Image: 
-        <input type="file" name="image" onChange={handleChange} />
-      </label>
-
-      <button type="submit">Submit</button>
-    </form>
+    <div className="rehome-form-page">
+      <div className="form">
+        <form onSubmit={handleSubmit} encType="multipart/form-data" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <h3>Pet Information</h3>
+            <label>
+              Name:
+              <input type="text" name="name" value={formData.name} onChange={handleChange} />
+            </label>
+            <meta name="viewport" content="width=device-width, intitial-sacle=1.0"></meta>
+            <label for="birthday">
+              Animals birthday:
+              <input type="date" name="age" value={formData.age} onChange={handleChange} />
+            </label>
+            <div>
+              <label>
+                Gender:
+                <input type="radio" name="gender" value="male" checked={formData.gender === "male"} onChange={handleChange} /> Male
+              </label>
+              <label>
+                <input type="radio" name="gender" value="female" checked={formData.gender === "female"} onChange={handleChange} /> Female
+              </label>
+              <label>
+                <input type="radio" name="gender" value="unknown" checked={formData.gender === "unknown"} onChange={handleChange} /> Unknown
+              </label>
+            </div>
+            <label>
+              Price:
+              <input type="text" name="price" value={formData.price} onChange={handleChange} />
+            </label>
+            <label>
+              Type:
+              <select name="type" value={formData.type} onChange={handleChange}>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="rodent">Rodent</option>
+                <option value="fish">Fish</option>
+                <option value="bird">Bird</option>
+                <option value="reptile">Reptile</option>
+                <option value="horse">Horse</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+            <div className="special-needs">
+              <label>
+                Special Accommodations:
+              </label>
+              <label>
+                <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
+                Doesn't like kids.</label>
+              <label>
+                <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
+                Doesn't like men.</label>
+              <label>
+                <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} />
+                Very Energetic.</label>
+            </div>
+            <label>
+              About:
+              <input type="text" name="about" value={formData.about} onChange={handleChange} />
+            </label>
+            <label>
+              Image:
+              <input type="file" name="image" onChange={handleChange} />
+            </label>
+            <label>
+              Location:
+              <input type="text" name="location" value={formData.location} onChange={handleChange} />
+            </label>
+            <label>
+              Contact:
+              <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
+            </label>
+          <button className="submit" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
   );
 };
 

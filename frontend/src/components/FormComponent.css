@@ -1,0 +1,78 @@
+.container {
+  margin-top: 80px; /* Adjust the value based on the height of your navbar */
+}
+
+.FormComponent {
+  text-align: center;
+}
+
+body {
+  background-color: #dfeeeb;
+}
+
+/* Font retrieval */
+/* Regular */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('../fonts/lt_saeada/LTSaeada-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+/* Bold */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('../fonts/lt_saeada/LTSaeada-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+/* Layout of the form page */
+.rehome-form-page {
+  font-family: 'SiteFont';
+  align-items: center;
+}
+
+/* Layout of form itself */
+.rehome-form-page .form {
+  background-color: #c5d6d2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border: 5px solid #529873;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+/* pet information section */
+.rehome-form-page .pet-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.rehome-form-page .special-needs {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* user information section */
+.rehome-form-page .user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* submit button color */
+.rehome-form-page .submit {
+  background-color: #FA8072;
+  border: 2px solid #529873;
+  color: white;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+
