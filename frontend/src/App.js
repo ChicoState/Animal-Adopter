@@ -84,7 +84,6 @@ function App() {
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-body" style={{ overflow: 'auto', paddingTop: '70px' }}>
-                    <PetList pet={pet} />
                   </div>
                 </div>
               </div>
