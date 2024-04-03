@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import AdoptPage from './pages/adopt';
 import RehomePage from './pages/rehome';
+import LoginPage from './pages/login';
 import Navbar from './components/NavbarComponent';
-
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import './App.css';
 
 function PetList({ pet }) {
   return (
+    <GoogleOAuthProvider clientId = "301532834482-trf0vqmnetu7t58ghh9soubb21bnhpp6.apps.googleusercontent.com">
     <div className="pet-box-container">
       {pet.map((item, index) => (
         <div key={index} className="pet-box">
@@ -44,12 +46,8 @@ function PetList({ pet }) {
         </div>
       ))}
     </div>
+    </GoogleOAuthProvider>
   );
-}
-
-
-function About() {
-  return <h2>About Page</h2>;
 }
 
 function App() {
@@ -96,8 +94,8 @@ function App() {
           <Route path="/rehome">
             <RehomePage />
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/login">
+            <LoginPage />
           </Route>
         </Switch>
       </div>
