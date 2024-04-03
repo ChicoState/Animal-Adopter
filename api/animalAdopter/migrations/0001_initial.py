@@ -20,6 +20,8 @@ class Migration(migrations.Migration):
                 ('price', models.CharField(max_length=280)),
                 ('type', models.CharField(max_length=280)),
                 ('location', models.CharField(max_length=280)),
+                ('specialNeeds', models.CharField(max_length=280)),
+                ('about', models.CharField(max_length=280)),
             ],
         ),
     ]

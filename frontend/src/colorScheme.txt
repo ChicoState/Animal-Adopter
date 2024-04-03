@@ -9,3 +9,4 @@ Pet card borders: #529873
 Pet card background: #c5d6d2
 Pet details text: #000000 (black)
 Pet box shadow: rgba(0, 0, 0, 1)
+Key buttons: #FA8072
