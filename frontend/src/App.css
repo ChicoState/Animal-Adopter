@@ -101,7 +101,9 @@ ul {
 
 /* Layout of the inside of each pet-box */
 .pet-box-container .pet-box {
-  width: 400px;
+  min-width: 350px;
+  max-width: 500px;
+  flex-grow: 1;
   height: 250px;
   background-color: #c5d6d2;
   display: flex;
@@ -109,9 +111,7 @@ ul {
   border: 5px solid #529873;
   border-radius: 15px;
   padding: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 20px;
+  margin: 0 5px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
 

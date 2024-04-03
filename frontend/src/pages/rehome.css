@@ -1,0 +1,30 @@
+.container {
+  margin-top: 80px; /* Adjust the value based on the height of your navbar */
+}
+
+.rehome {
+  text-align: center;
+}
+
+body {
+  background-color: #dfeeeb;
+}
+
+/* Font retrieval */
+/* Regular */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('../fonts/lt_saeada/LTSaeada-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+/* Bold */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('../fonts/lt_saeada/LTSaeada-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+.form-header {
+  font-family: 'SiteFont';
+  text-align: center;
+}
