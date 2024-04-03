@@ -11,7 +11,6 @@ import './App.css';
 
 function PetList({ pet }) {
   return (
-    <GoogleOAuthProvider clientId = "301532834482-trf0vqmnetu7t58ghh9soubb21bnhpp6.apps.googleusercontent.com">
     <div className="pet-box-container">
       {pet.map((item, index) => (
         <div key={index} className="pet-box">
@@ -46,7 +45,6 @@ function PetList({ pet }) {
         </div>
       ))}
     </div>
-    </GoogleOAuthProvider>
   );
 }
 
@@ -73,33 +71,35 @@ function App() {
   console.log('Pet state:', pet); // Log the pet state
 
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <Switch>
-          <Route path="/" exact>
-            <div className="row">
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body" style={{ overflow: 'auto', paddingTop: '70px' }}>
-                    <PetList pet={pet} />
+    <GoogleOAuthProvider clientId="301532834482-trf0vqmnetu7t58ghh9soubb21bnhpp6.apps.googleusercontent.com"> {}
+      <Router>
+        <div>
+          <Navbar />
+          <Switch>
+            <Route path="/" exact>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="card">
+                    <div className="card-body" style={{ overflow: 'auto', paddingTop: '70px' }}>
+                      <PetList pet={pet} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Route>
-          <Route path="/adopt">
-            <AdoptPage />
-          </Route>
-          <Route path="/rehome">
-            <RehomePage />
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+            </Route>
+            <Route path="/adopt">
+              <AdoptPage />
+            </Route>
+            <Route path="/rehome">
+              <RehomePage />
+            </Route>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 
