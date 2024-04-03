@@ -10,46 +10,6 @@ import UserFormComponent from './components/UserFormComponent';
 
 import './App.css';
 
-function PetList({ pet }) {
-  return (
-    <div className="pet-box-container">
-      {pet.map((item, index) => (
-        <div key={index} className="pet-box">
-          <div className="top">
-            <div className="image-container">
-              <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} />
-            </div>
-            <div className="pet-info">
-              <div className="name-gender">
-                <h5>{item.name}</h5>
-                <div className="gender-img">
-                  {item.gender === "male" ? (
-                    <img src={`http://127.0.0.1:8000/media/genderSymbols/male.png`} alt={item.gender} />
-                  ) : item.gender === "female" ? (
-                    <img src={`http://127.0.0.1:8000/media/genderSymbols/female.png`} alt={item.gender} />
-                  ) : (
-                    <img src={`http://127.0.0.1:8000/media/genderSymbols/unknown.png`} alt={item.gender} />
-                  )}
-                </div>
-              </div>
-            </div>
-            <p>Breed: {item.type}</p>
-            <p>Age: {item.age}</p>
-            <p>Price: ${item.price}</p>
-            <p>Location: {item.location}</p>
-            <p>Contact: {item.contact}</p>
-          </div>
-          <div className="pet-description">
-            <p>Tags: these will be tags of the pet</p>
-            <p>Description: this will be a description of the pet</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-
 function About() {
   return <h2>About Page</h2>;
 }
@@ -86,7 +46,6 @@ function App() {
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-body" style={{ overflow: 'auto', paddingTop: '70px' }}>
-                    <PetList pet={pet} />
                   </div>
                 </div>
               </div>
