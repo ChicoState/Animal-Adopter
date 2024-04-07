@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import AdoptPage from './pages/adopt';
 import RehomePage from './pages/rehome';
+import LoginPage from './pages/login';
 import Navbar from './components/NavbarComponent';
+import UserFormComponent from './components/UserFormComponent';
 
 
 import './App.css';
@@ -89,6 +91,9 @@ function App() {
               </div>
             </div>
           </Route>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
           <Route path="/adopt">
             <AdoptPage />
           </Route>
@@ -97,6 +102,9 @@ function App() {
           </Route>
           <Route path="/about">
             <About />
+          </Route>
+          <Route path="/createProfile">
+            <UserFormComponent />
           </Route>
         </Switch>
       </div>
