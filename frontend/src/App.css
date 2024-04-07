@@ -94,6 +94,7 @@ ul {
 /* Layout of the pet-boxs together */
 .pet-box-container {
   font-family: 'SiteFont';
+  font-size: 20px;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -104,7 +105,7 @@ ul {
   min-width: 350px;
   max-width: 500px;
   flex-grow: 1;
-  height: 250px;
+  height: 200px;
   background-color: #c5d6d2;
   display: flex;
   flex-direction: column;
@@ -118,7 +119,7 @@ ul {
 /* The image itself */
 .pet-box-container img {
   max-width: 200px;
-  max-height: 150px;
+  max-height: 195px;
   display: block;
   border: 3px solid #529873;
   border-radius: 15px;
@@ -132,15 +133,15 @@ ul {
 }
 
 .pet-box-container .gender-img img{
-  max-width: 20px;
-  max-height: 20px;
+  max-width: 25px;
+  max-height: 25px;
   border: 2px solid #529873;
 }
 
 /* The header */
 .pet-box-container h5 {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 25px;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-right: 10px;
@@ -152,41 +153,116 @@ ul {
   margin: 5px 0;
 }
 
-/* Styling for the pet panel */
+/* BEGIN PANEL STYLING */
+/* display when not present */
 .pet-panel {
   display: none;
 }
 
+/* Panel display */
 .pet-panel.show {
+  font-family: 'SiteFont';
+  font-size: 20px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
   max-width: 600px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  height: 90%;
+  background-color: #c5d6d2;
+  border: 5px solid #529873;
+  border-radius: 15px;
   padding: 20px;
-  z-index: 1000; 
+  z-index: 1000; /* keep panel in front */
   display: block;
+  overflow-y: auto;
+}
+
+/* Style the scrollbar */
+.pet-panel.show::-webkit-scrollbar {
+  width: 12px;
+}
+/* Track */
+.pet-panel.show::-webkit-scrollbar-track {
+  background: #c5d6d2;
+  border-radius: 15px;
+}
+/* Handle */
+.pet-panel.show::-webkit-scrollbar-thumb {
+  background: #dfeeeb;
+  border-radius: 15px;
+  width: 5px;
 }
 
 /* Styling for the pet panel content */
-.pet-panel-content {
-  margin-bottom: 20px;
+.pet-panel-content .top {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
-/* Styling for the close button */
-.close-button {
-  background-color: #f44336;
-  color: #fff;
-  border: none;
+/* The image itself */
+.pet-panel-content .image-container img {
+  max-width: calc(100% - 30px);
+  border: 3px solid #529873;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+/* Header and gender */
+.pet-panel-content .name-gender {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.pet-panel-content h5 {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.pet-panel-content .gender-img img{
+  max-width: 25px;
+  max-height: 25px;
+  border: 2px solid #529873;
+  border-radius:50%
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+/* Styling for adopt button */
+.adopt-button {
+  background-color: #FA8072;
+  border: 2px solid #529873;
+  color: white;
+  font-weight: bold;
+  font-family: inherit;
+  border-radius: 15px;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
+  font-size: 20px;
+  width: calc(50% - 30px);
 }
-
-.close-button:hover {
-  background-color: #d32f2f;
+/* Styling for the close button */
+.close-button {
+  background-color: #f44336;
+  border: 2px solid #529873;
+  color: white;
+  font-weight: bold;
+  font-family: inherit;
+  border-radius: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 20px;
+  width: calc(50% - 30px);
 }

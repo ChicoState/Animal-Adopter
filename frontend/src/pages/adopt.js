@@ -37,45 +37,47 @@ function PetList({ pet }) {
               <p>Age: {item.age}</p>
               <p>Price: ${item.price}</p>
               <p>Location: {item.location}</p>
-              <p>Contact: {item.contact}</p>
+
             </div>
           </div>
         ))}
       </div>
+      {/* Popup panel */}
       {selectedPet !== null && (
-      <div className="pet-panel show">
-        <div className="pet-panel-content">
-          <div className="top">
-            <div className="image-container">
-              <img src={`http://127.0.0.1:8000/media/${pet[selectedPet].image}`} alt={pet[selectedPet].type} />
-            </div>
-            <div className="pet-info">
-              <div className="name-gender">
-                <h5>{pet[selectedPet].name}</h5>
-                <div className="gender-img">
-                  {pet[selectedPet].gender === "male" ? (
-                    <img src={`http://127.0.0.1:8000/media/genderSymbols/male.png`} alt={pet[selectedPet].gender} />
-                  ) : pet[selectedPet].gender === "female" ? (
-                    <img src={`http://127.0.0.1:8000/media/genderSymbols/female.png`} alt={pet[selectedPet].gender} />
-                  ) : (
-                    <img src={`http://127.0.0.1:8000/media/genderSymbols/unknown.png`} alt={pet[selectedPet].gender} />
-                  )}
+        <div className="pet-panel show">
+          <div className="pet-panel-content">
+            <div className="top">
+              <div className="image-container">
+                <img src={`http://127.0.0.1:8000/media/${pet[selectedPet].image}`} alt={pet[selectedPet].type} />
+              </div>
+              <div className="pet-info">
+                <div className="name-gender">
+                  <h5>{pet[selectedPet].name}</h5>
+                  <div className="gender-img">
+                    {pet[selectedPet].gender === "male" ? (
+                      <img src={`http://127.0.0.1:8000/media/genderSymbols/male.png`} alt={pet[selectedPet].gender} />
+                    ) : pet[selectedPet].gender === "female" ? (
+                      <img src={`http://127.0.0.1:8000/media/genderSymbols/female.png`} alt={pet[selectedPet].gender} />
+                    ) : (
+                      <img src={`http://127.0.0.1:8000/media/genderSymbols/unknown.png`} alt={pet[selectedPet].gender} />
+                    )}
+                  </div>
                 </div>
+                <p>Breed: {pet[selectedPet].type}</p>
+                <p>Age: {pet[selectedPet].age}</p>
+                <p>Price: ${pet[selectedPet].price}</p>
+                <p>Location: {pet[selectedPet].location}</p>
+                <p>Contact: {pet[selectedPet].contact}</p>
+                <p>Tags: tags</p>
+                <p>Description: {pet[selectedPet].about}</p>
               </div>
             </div>
-            <p>Breed: {pet[selectedPet].type}</p>
-            <p>Age: {pet[selectedPet].age}</p>
-            <p>Price: ${pet[selectedPet].price}</p>
-            <p>Location: {pet[selectedPet].location}</p>
-            <p>Contact: {pet[selectedPet].contact}</p>
           </div>
-          <div className="pet-description">
-            <p>Tags: tags</p>
-            <p>Description: abput</p>
+          <div className="buttons">
+            <button className="adopt-button" >Adopt</button>
+            <button className="close-button" onClick={() => setSelectedPet(null)}>Close</button>
           </div>
         </div>
-        <button className="close-button" onClick={() => setSelectedPet(null)}>Close</button>
-      </div>
       )}
     </div>
   );
