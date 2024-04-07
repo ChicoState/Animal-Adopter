@@ -16,7 +16,7 @@ const Navbar = () => {
                 <NavLink exact to="/" activeClassName="active" className="nav-link">Home</NavLink>
                 <NavLink to="/adopt" activeClassName="active" className="nav-link">Adopt</NavLink>
                 <NavLink to="/rehome" activeClassName="active" className="nav-link">Rehome</NavLink>
-                <NavLink to="/createProfile" style={{ padding: '15px' }}>Create Profile</NavLink>
+                <NavLink to="/createProfile" activeClassName="active" className="nav-link">Create Profile</NavLink>
               </NavMenu>
             </div>
           </div>
