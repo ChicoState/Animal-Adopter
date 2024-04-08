@@ -266,3 +266,30 @@ ul {
   font-size: 20px;
   width: calc(50% - 30px);
 }
+
+/* User icon container */
+.user-icon-container {
+  margin-left: auto; /* Push the user icon to the far right */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-right {
+  position: absolute;
+  right: 1.5%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0px;
+  z-index: 1000; /* Ensure dropdown is above other elements */
+}
