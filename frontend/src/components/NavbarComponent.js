@@ -68,7 +68,7 @@ const Navbar = () => {
           </div>
           <div className="navbar-right">
             <div className="user-icon-button" onClick={toggleDropdown}>
-              <FaUser style={{ fontSize: '24px', color: 'white' }} />
+              <FaUser style={{ fontSize: '32px', color: 'white' }} />
              </div>
             {showDropdown && (
               <div className="dropdown-menu">
