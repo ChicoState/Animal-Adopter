@@ -49,7 +49,6 @@ const YourFormComponent = () => {
   };
 
   return (
-    </form>
     <div className="rehome-form-page">
       <div className="form">
         <form onSubmit={handleSubmit} encType="multipart/form-data" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -94,21 +93,21 @@ const YourFormComponent = () => {
               </select>
             </label>
             <div className="special-needs">
-            <label>
-        Special Accommodations:
-      </label> 
-      <label>
-        <input type="checkbox" name="specialNeeds" value="true" onChange={handleChange} /> Doesn't like kids.
-      </label>
-      <label>
-        <input type="checkbox" name="specialOne" onChange={handleChange} /> Doesn't like men. 
-      </label>
-      <label>
-        <input type="checkbox" name="specialTwo" onChange={handleChange} /> Very Energetic.
-      </label>
-      <label>
-        <input type="checkbox" name="specialThree" onChange={handleChange} /> Is Spayed or Nuetered.
-      </label>
+              <label>
+                Special Accommodations:
+              </label> 
+              <label>
+                <input type="checkbox" name="specialNeeds" value="true" onChange={handleChange} /> Doesn't like kids.
+              </label>
+              <label>
+                <input type="checkbox" name="specialOne" onChange={handleChange} /> Doesn't like men. 
+              </label>
+              <label>
+                <input type="checkbox" name="specialTwo" onChange={handleChange} /> Very Energetic.
+              </label>
+              <label>
+                <input type="checkbox" name="specialThree" onChange={handleChange} /> Is Spayed or Nuetered.
+              </label>
             </div>
             <label>
               About:
