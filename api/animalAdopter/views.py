@@ -18,6 +18,10 @@ def get_animal_models(request):
     animal_models = AnimalModel.objects.all().values()
     return JsonResponse({'pet': list(animal_models)})
 
+def get_user_models(request):
+    user_models = UserModel.objects.all().values()
+    return JsonResponse({'user': list(user_models)})
+
 
 @csrf_exempt
 def create_animal_model(request):
@@ -30,6 +34,8 @@ def create_animal_model(request):
         location = request.POST.get('location')
         contact = request.POST.get('contact')
         name = request.POST.get('name')
+        specialNeeds = request.POST.get('specialNeeds')
+        about = request.POST.get('about')
 
         # Assuming you are storing the image file in the request.FILES dictionary
         image = request.FILES.get('image')
@@ -43,6 +49,8 @@ def create_animal_model(request):
             location=location,
             contact=contact,
             name=name,
+            specialNeeds=specialNeeds,
+            about=about,
             image=image
         )
         animal.save()

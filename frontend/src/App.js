@@ -5,6 +5,7 @@ import AdoptPage from './pages/adopt';
 import RehomePage from './pages/rehome';
 import LoginPage from './pages/login';
 import Navbar from './components/NavbarComponent';
+import UserFormComponent from './components/UserFormComponent';
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
