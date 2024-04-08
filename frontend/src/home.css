@@ -1,0 +1,263 @@
+.container {
+  margin-top: 80px; /* Adjust the value based on the height of your navbar */
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+body {
+  background-color: #dfeeeb;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+div.kitty {
+  width: 80%;
+  font-size: 20px;
+}
+
+div.kitty p {
+  font-size: 16px; /* Adjust the font size as needed */
+  line-height: 1.5; /* Adjust the line height for better readability */
+  color: #333; /* Set the text color */
+  margin-bottom: 10px; /* Add some bottom margin for spacing */
+}
+
+div.desc {
+  position: absolute;
+  text-align: center;
+  margin: 10px;
+  right: 20%;
+  left: 28%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  float: left;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Font retrieval */
+/* Regular */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('./fonts/lt_saeada/LTSaeada-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+/* Bold */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('./fonts/lt_saeada/LTSaeada-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+.home-page-container {
+  font-family: 'SiteFont';
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pet-option-container {
+  font-family: 'SiteFont';
+  font-size: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Layout of the inside of each pet-box */
+.pet-option-container .browse-options {
+  min-width: 350px;
+  max-width: 500px;
+  flex-grow: 1;
+  height: 200px;
+  background-color: #c5d6d2;
+  display: flex;
+  flex-direction: row;
+  border: 5px solid #529873;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 0 5px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+/* The image itself */
+.pet-option-container img {
+  max-width: 200px;
+  max-height: 195px;
+  display: block;
+  border: 3px solid #529873;
+  border-radius: 15px;
+  margin-right: 10px;
+}
+
+/* The header */
+.pet-option-container h5 {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+/* Each element of the body */
+.pet-option-container .browse-options p {
+  font-weight: normal;
+  margin: 5px 0;
+}
+
+/* BEGIN PANEL STYLING */
+/* display when not present */
+.pet-panel {
+  display: none;
+}
+
+/* Panel display */
+.pet-panel.show {
+  font-family: 'SiteFont';
+  font-size: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 600px;
+  height: 90%;
+  background-color: #c5d6d2;
+  border: 5px solid #529873;
+  border-radius: 15px;
+  padding: 20px;
+  z-index: 1000; /* keep panel in front */
+  display: block;
+  overflow-y: auto;
+}
+
+/* Style the scrollbar */
+.pet-panel.show::-webkit-scrollbar {
+  width: 12px;
+}
+/* Track */
+.pet-panel.show::-webkit-scrollbar-track {
+  background: #c5d6d2;
+  border-radius: 15px;
+}
+/* Handle */
+.pet-panel.show::-webkit-scrollbar-thumb {
+  background: #dfeeeb;
+  border-radius: 15px;
+  width: 5px;
+}
+
+/* Styling for the pet panel content */
+.pet-panel-content .top {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+/* The image itself */
+.pet-panel-content .image-container img {
+  max-width: calc(100% - 30px);
+  border: 3px solid #529873;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+/* Header and gender */
+.pet-panel-content .name-gender {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.pet-panel-content h5 {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.pet-panel-content .gender-img img{
+  max-width: 25px;
+  max-height: 25px;
+  border: 2px solid #529873;
+  border-radius:50%
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+/* Styling for adopt button */
+.adopt-button {
+  background-color: #FA8072;
+  border: 2px solid #529873;
+  color: white;
+  font-weight: bold;
+  font-family: inherit;
+  border-radius: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 20px;
+  width: calc(50% - 30px);
+}
+/* Styling for the close button */
+.close-button {
+  background-color: #f44336;
+  border: 2px solid #529873;
+  color: white;
+  font-weight: bold;
+  font-family: inherit;
+  border-radius: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 20px;
+  width: calc(50% - 30px);
+}

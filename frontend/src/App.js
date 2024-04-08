@@ -7,48 +7,37 @@ import LoginPage from './pages/login';
 import Navbar from './components/NavbarComponent';
 import UserFormComponent from './components/UserFormComponent';
 
+import './home.css';
 
-import './App.css';
-
-function PetList({ pet }) {
+function HomePage({ animalTypes }) {
   return (
-    <div className="pet-box-container">
-      {pet.map((item, index) => (
-        <div key={index} className="pet-box">
-          <div className="top">
-            <div className="image-container">
-              <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} />
-            </div>
-            <div className="pet-info">
-              <div className="name-gender">
-                <h5>{item.name}</h5>
-                <div className="gender-img">
-                  {item.gender === "male" ? (
-                    <img src={`http://127.0.0.1:8000/media/genderSymbols/male.png`} alt={item.gender} />
-                  ) : item.gender === "female" ? (
-                    <img src={`http://127.0.0.1:8000/media/genderSymbols/female.png`} alt={item.gender} />
-                  ) : (
-                    <img src={`http://127.0.0.1:8000/media/genderSymbols/unknown.png`} alt={item.gender} />
-                  )}
-                </div>
+    <div className="home-page-container">
+      <h1>Browse Animals</h1>
+      <div className="pet-option-container">
+        {animalTypes.map((type, index) => (
+          <div key={index} className="browse-options">
+            <div className="top">
+              <div>
+                <h5>{type.option}</h5>
               </div>
             </div>
-            <p>Breed: {item.type}</p>
-            <p>Age: {item.age}</p>
-            <p>Price: ${item.price}</p>
-            <p>Location: {item.location}</p>
-            <p>Contact: {item.contact}</p>
           </div>
-          <div className="pet-description">
-            <p>Tags: {item.specialNeeds}</p>
-            <p>Description: {item.about}</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  );
+  )
 }
 
+const animalTypes = [
+  { option: 'Dogs', value: 'dog' },
+  { option: 'Cats', value: 'cat' },
+  { option: 'Rodents', value: 'rodent' },
+  { option: 'Fish', value: 'fish' },
+  { option: 'Birds', value: 'bird' },
+  { option: 'Reptile', value: 'reptile' },
+  { option: 'Horse', value: 'horse' },
+  { option: 'Other', value: 'other' }
+];
 
 function About() {
   return <h2>About Page</h2>;
@@ -86,6 +75,7 @@ function App() {
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-body" style={{ overflow: 'auto', paddingTop: '70px' }}>
+                    <HomePage animalTypes={animalTypes} />
                   </div>
                 </div>
               </div>
