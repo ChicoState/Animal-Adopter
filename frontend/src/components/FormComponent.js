@@ -12,12 +12,17 @@ const YourFormComponent = () => {
     name: '',
     specialNeeds: '',
     about: '',
+    specialOne: '',
+    specialTwo: '',
+    specialThree: '',
     image: null,
   });
 
   const handleChange = (e) => {
     if (e.target.name === 'image') {
       setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+    } else if(e.target.type === 'checkbox') {
+      setFormData({ ...formData, [e.target.name]: e.target.checked ? "true" : "false" });
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
@@ -73,6 +78,7 @@ const YourFormComponent = () => {
       <label>
         Type: 
         <select name="type" value={formData.type} onChange={handleChange}>
+          <option value = "" selected disabled hidden>Select Animal Type</option>
           <option value="dog">Dog</option>
           <option value="cat">Cat</option>
           <option value="rodent">Rodent</option>
@@ -98,16 +104,16 @@ const YourFormComponent = () => {
         Special Accommodations:
       </label> 
       <label>
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} /> Doesn't like kids.
+        <input type="checkbox" name="specialNeeds" value="true" onChange={handleChange} /> Doesn't like kids.
       </label>
       <label>
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} /> Doesn't like men. 
+        <input type="checkbox" name="specialOne" onChange={handleChange} /> Doesn't like men. 
       </label>
       <label>
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} /> Very Energetic.
+        <input type="checkbox" name="specialTwo" onChange={handleChange} /> Very Energetic.
       </label>
       <label>
-        <input type="checkbox" name="specialNeeds" value={formData.specialNeeds} onChange={handleChange} /> Is Spayed or Nuetered.
+        <input type="checkbox" name="specialThree" onChange={handleChange} /> Is Spayed or Nuetered.
       </label>
     
       

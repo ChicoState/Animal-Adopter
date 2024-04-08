@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='animalmodel',
             name='specialNeeds',
-            field=models.CharField(default='', max_length=280),
+            field=models.CharField(default='false', max_length=280),
         ),
     ]

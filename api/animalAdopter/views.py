@@ -32,6 +32,9 @@ def create_animal_model(request):
         name = request.POST.get('name')
         specialNeeds = request.POST.get('specialNeeds')
         about = request.POST.get('about')
+        specialOne = request.POST.get('specialOne')
+        specialTwo = request.POST.get('specialTwo')
+        specialThree = request.POST.get('specialThree')
 
         # Assuming you are storing the image file in the request.FILES dictionary
         image = request.FILES.get('image')
@@ -47,7 +50,10 @@ def create_animal_model(request):
             name=name,
             specialNeeds=specialNeeds,
             about=about,
-            image=image
+            image=image,
+            specialOne=specialOne,
+            specialTwo=specialTwo,
+            specialThree=specialThree
         )
         animal.save()
 
