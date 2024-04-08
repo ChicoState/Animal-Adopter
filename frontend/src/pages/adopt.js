@@ -33,8 +33,8 @@ function PetList({ pet }) {
                   </div>
                 </div>
               </div>
-              <p>Breed: {item.type}</p>
-              <p>Age: {item.age}</p>
+              <p>Type: {item.type}</p>
+              <p>Birthday: {item.age}</p>
               <p>Price: ${item.price}</p>
               <p>Location: {item.location}</p>
 
@@ -63,8 +63,8 @@ function PetList({ pet }) {
                     )}
                   </div>
                 </div>
-                <p>Breed: {pet[selectedPet].type}</p>
-                <p>Age: {pet[selectedPet].age}</p>
+                <p>Type: {pet[selectedPet].type}</p>
+                <p>Birthday: {pet[selectedPet].age}</p>
                 <p>Price: ${pet[selectedPet].price}</p>
                 <p>Location: {pet[selectedPet].location}</p>
                 <p>Contact: {pet[selectedPet].contact}</p>
