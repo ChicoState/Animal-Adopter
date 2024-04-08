@@ -19,6 +19,7 @@ function HomePage({ animalTypes }) {
             <div className="top">
               <div>
                 <h5>{type.option}</h5>
+                <img src={`http://127.0.0.1:8000/media/homeImages/${type.value}.jpeg`} />
               </div>
             </div>
           </div>
