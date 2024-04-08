@@ -79,6 +79,12 @@ function App() {
   return (
     <Router>
       <div>
+        <div className="app">
+          <input 
+            className="search"
+            placeholder="Search..."
+          />
+        </div>
         <Navbar />
         <Switch>
           <Route path="/" exact>
