@@ -1,74 +1,12 @@
-// import React, { useState, useEffect } from 'react';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import axios from 'axios';
-// import AdoptPage from './pages/adopt';
-// import RehomePage from './pages/rehome';
-// import LoginPage from './pages/login';
-// import Navbar from './components/NavbarComponent';
-// import UserFormComponent from './components/UserFormComponent';
-
-// import { GoogleOAuthProvider } from '@react-oauth/google';
-
-// import './App.css';
-
-// function App() {
-//   const [pet, setPet] = useState([]);
-
-//   useEffect(() => {
-//     axios.get('http://127.0.0.1:8000/api/animalAdopter/models')
-//       .then(response => {
-//         console.log('Axios Response:', response);
-
-//         if (response.status === 200) {
-//           console.log('Data from the server:', response.data);
-//           setPet(response.data.pet);
-//         } else {
-//           console.error('Request failed with status code:', response.status);
-//         }
-//       })
-//       .catch(error => {
-//         console.error('Axios error:', error.response ? error.response.data : error.message);
-//       });
-//   }, []);
-
-//   console.log('Pet state:', pet); // Log the pet state
-
-//   return (
-//     <GoogleOAuthProvider clientId="301532834482-trf0vqmnetu7t58ghh9soubb21bnhpp6.apps.googleusercontent.com"> {}
-//       <Router>
-//         <div>
-//           <Navbar />
-//           <Switch>
-//             <Route path="/" exact>
-//             </Route>
-//             <Route path="/adopt">
-//               <AdoptPage />
-//             </Route>
-//             <Route path="/rehome">
-//               <RehomePage />
-//             </Route>
-//             <Route path="/createProfile">
-//               <UserFormComponent />
-//             </Route>
-//           </Switch>
-//         </div>
-//       </Router>
-//     </GoogleOAuthProvider>
-//   );
-// }
-
-// export default App;
-
-
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google'; // Import GoogleOAuthProvider
 import axios from 'axios';
 import AdoptPage from './pages/adopt';
 import RehomePage from './pages/rehome';
 import LoginPage from './pages/login';
 import Navbar from './components/NavbarComponent';
 import UserFormComponent from './components/UserFormComponent';
-
 import './home.css';
 
 function HomePage({ animalTypes }) {
@@ -81,14 +19,14 @@ function HomePage({ animalTypes }) {
             <div className="top">
               <div>
                 <h5>{type.option}</h5>
-                <img src={`http://127.0.0.1:8000/media/homeImages/${type.value}.jpeg`} />
+                <img src={`http://127.0.0.1:8000/media/homeImages/${type.value}.jpeg`} alt={type.option} />
               </div>
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 const animalTypes = [
@@ -102,9 +40,7 @@ const animalTypes = [
   { option: 'Other', value: 'other' }
 ];
 
-function About() {
-  return <h2>About Page</h2>;
-}
+const clientId = "301532834482-trf0vqmnetu7t58ghh9soubb21bnhpp6.apps.googleusercontent.com";
 
 function App() {
   const [pet, setPet] = useState([]);
@@ -129,39 +65,21 @@ function App() {
   console.log('Pet state:', pet); // Log the pet state
 
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <Switch>
-          <Route path="/" exact>
-            <div className="row">
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body" style={{ overflow: 'auto', paddingTop: '70px' }}>
-                    <HomePage animalTypes={animalTypes} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/adopt">
-            <AdoptPage />
-          </Route>
-          <Route path="/rehome">
-            <RehomePage />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/createProfile">
-            <UserFormComponent />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    // Wrap your Router component with GoogleOAuthProvider
+    <GoogleOAuthProvider clientId={clientId}>
+      <Router>
+        <div>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage animalTypes={animalTypes} />} exact />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/adopt" element={<AdoptPage />} />
+            <Route path="/rehome" element={<RehomePage />} />
+            <Route path="/createProfile" element={<UserFormComponent />} />
+          </Routes>
+        </div>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 

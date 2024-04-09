@@ -1,12 +1,14 @@
-FROM  python:3.8.13-bullseye
+FROM python:3.8.13-bullseye
 
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /api
 
-RUN pip install django django-cors-headers Pillow
+# Install dependencies
+COPY requirements.txt /api/
+RUN pip install --no-cache-dir -r requirements.txt
 
-# copy from the current directory of the Dockerfile to /api in the image
-COPY . .
+# Copy the current directory contents into the container
+COPY . /api
 
 EXPOSE 8000

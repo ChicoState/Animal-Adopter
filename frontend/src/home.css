@@ -1,5 +1,5 @@
 .container {
-  margin-top: 80px; /* Adjust the value based on the height of your navbar */
+  margin-top: 1000px; /* Adjust the value based on the height of your navbar */
 }
 
 .App {
@@ -98,7 +98,9 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 20px; /* Adjust this value based on your navbar's height */
 }
+
 
 /* Layout of each option */
 .pet-option-container {

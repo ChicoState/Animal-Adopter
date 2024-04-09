@@ -28,3 +28,9 @@ class UserModel(models.Model):
     location = models.CharField(max_length = 280)
     contact = models.CharField(max_length = 280, default = '')
     isShelter = models.CharField(max_length = 280, default = 'no')
+
+
+class GoogleUser(models.Model):
+    google_id = models.CharField(max_length=280, unique=True)
+    # Add other fields as necessary, e.g., email, name, etc.
+    created_at = models.DateTimeField(auto_now_add=True)

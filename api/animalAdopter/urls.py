@@ -16,8 +16,8 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from .views import index, get_animal_models, create_animal_model, google_login, create_profile, user_profile
+from django.urls import path, include
+from .views import index, get_animal_models, create_animal_model, google_login
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,8 +27,7 @@ urlpatterns = [
     path('api/animalAdopter/models', get_animal_models, name='get_animal_models'),
     path('api/animalAdopter/create_animal_model', create_animal_model, name='create_animal_model'),
     path('google_login/', google_login, name='google_login'),
-    path('api/animalAdopter/create_profile', create_profile, name='create_profile'),
-    path('api/animalAdopter/user_profile', user_profile, name='user_profile'),
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

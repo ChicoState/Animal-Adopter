@@ -1,0 +1,5 @@
+django==3.2.8  # or the version you're using
+djangorestframework==3.12.4  # if you're using DRF
+django-cors-headers==3.7.0
+Pillow==8.3.1
+django-allauth==0.45.0  # Add django-allauth
