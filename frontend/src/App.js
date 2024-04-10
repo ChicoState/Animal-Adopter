@@ -40,8 +40,6 @@ const animalTypes = [
   { option: 'Other', value: 'other' }
 ];
 
-const clientId = "301532834482-trf0vqmnetu7t58ghh9soubb21bnhpp6.apps.googleusercontent.com";
-
 function App() {
   const [pet, setPet] = useState([]);
 
@@ -65,8 +63,7 @@ function App() {
   console.log('Pet state:', pet); // Log the pet state
 
   return (
-    // Wrap your Router component with GoogleOAuthProvider
-    <GoogleOAuthProvider clientId={clientId}>
+    <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
       <Router>
         <div>
           <Navbar />

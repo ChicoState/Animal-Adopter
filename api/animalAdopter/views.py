@@ -1,9 +1,14 @@
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse
 from datetime import datetime
 from .models import AnimalModel, UserModel, GoogleUser
-from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import login
+from django.http import JsonResponse
+from google.oauth2 import id_token
+from google.auth.transport import requests
+
+import os
+
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
 
 def index(request):
     current_time = datetime.now().strftime("%-I:%S %p")
@@ -66,16 +71,28 @@ def create_animal_model(request):
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
-
 def google_login(request):
-    # This is a simplified example. You'll need to use a library like django-allauth or a Django view to handle the OAuth flow.
-    google_id = request.GET.get('google_id')
-    user, created = GoogleUser.objects.get_or_create(google_id=google_id)
+    # This endpoint would receive the token ID sent from the frontend
+    token = request.POST.get('token')
 
-    # Potentially add additional session management logic here
-    login(request, user)  # Assuming `user` is an instance of Django's User model or a model that supports Django's auth system.
+    try:
+        # Specify the CLIENT_ID of the app that accesses the backend:
+        idinfo = id_token.verify_oauth2_token(token, requests.Request(), GOOGLE_CLIENT_ID)
 
-    if created:
-        return redirect('/createProfile')  # New user
-    else:
-        return redirect('/')  # Existing user
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise ValueError('Wrong issuer.')
+
+        # ID token is valid. Get the user's Google Account ID from the decoded token.
+        userid = idinfo['sub']
+        
+        # Perform your user lookup or creation logic here
+        user, created = GoogleUser.objects.get_or_create(google_id=userid)
+        
+        # Optionally create a Django auth user here if needed
+        # login(request, user)  # Adjust according to your user model
+        
+        return JsonResponse({'isNewUser': created})
+
+    except ValueError:
+        # Invalid token
+        pass

@@ -40,7 +40,7 @@ const Navbar = () => {
             {showDropdown && (
               <div style={{ position: 'absolute', right: '1%', top: '100%', backgroundColor: 'white', padding: '10px', borderRadius: '5px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
                 <GoogleLogin
-                  clientId="301532834482-trf0vqmnetu7t58ghh9soubb21bnhpp6.apps.googleusercontent.com"
+                  clientId = {process.env.REACT_APP_GOOGLE_CLIENT_ID}
                   onSuccess={handleLoginSuccess}
                   onError={handleLoginFailure}
                 />
