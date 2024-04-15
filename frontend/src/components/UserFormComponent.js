@@ -37,42 +37,6 @@ const UserFormComponent = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="rehome-form-page">
-      <div className="form">
-        <form onSubmit={handleSubmit} encType="multipart/form-data" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <label>
-              Name: 
-              <input type="text" name="name" value={formData.name} onChange={handleChange} />
-            </label>
-
-            <label>
-              Age: 
-              <input type="text" name="age" value={formData.age} onChange={handleChange} />
-            </label>
-
-            <label>
-              Gender: 
-              <input type="text" name="gender" value={formData.gender} onChange={handleChange} />
-            </label>
-
-            <label>
-              Location: 
-              <input type="text" name="location" value={formData.location} onChange={handleChange} />
-            </label>
-
-            <label>
-              Contact: 
-              <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
-            </label>
-
-            <label>
-              Is Shelter?: 
-              <input type="text" name="isShelter" value={formData.isShelter} onChange={handleChange} />
-            </label>
-          <button type="submit">Submit</button>
-        </form>
-=======
     <div className="form-header" style={{ padding: '45px', textAlign: 'center' }}>
       <h1 style={{ marginBottom: '20px' }}>Add Your Information</h1>
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -119,7 +83,6 @@ const UserFormComponent = () => {
             </form>
           </div>
         </div>
->>>>>>> b2c27b43c2005b09cebbf7ab00f50fbe87abc164
       </div>
     </div>
   );
