@@ -23,4 +23,4 @@ class UserModel(models.Model):
     location = models.CharField(max_length = 280)
     contact = models.CharField(max_length = 280, default = '')
     isShelter = models.CharField(max_length = 280, default = 'no')
-    
+
