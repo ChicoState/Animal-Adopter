@@ -1,0 +1,144 @@
+.container {
+  margin-top: 80px; /* Adjust the value based on the height of your navbar */
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+body {
+  background-color: #dfeeeb;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+div.kitty {
+  width: 80%;
+  font-size: 20px;
+}
+
+div.kitty p {
+  font-size: 16px; /* Adjust the font size as needed */
+  line-height: 1.5; /* Adjust the line height for better readability */
+  color: #333; /* Set the text color */
+  margin-bottom: 10px; /* Add some bottom margin for spacing */
+}
+
+div.desc {
+  position: absolute;
+  text-align: center;
+  margin: 10px;
+  right: 20%;
+  left: 28%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  float: left;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Font retrieval */
+/* Regular */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('./fonts/lt_saeada/LTSaeada-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+/* Bold */
+@font-face {
+  font-family: 'SiteFont';
+  src: url('./fonts/lt_saeada/LTSaeada-Bold.otf') format('opentype');
+  font-weight: bold;
+}
+
+/* Layout of entire homepage */
+.home-page-container {
+  font-family: 'SiteFont';
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Layout of each option */
+.pet-option-container {
+  font-family: 'SiteFont';
+  font-size: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Layout of each option box */
+.pet-option-container .browse-options {
+  width: 250px;
+  flex-grow: 1;
+  height: 200px;
+  background-color: #c5d6d2;
+  display: flex;
+  flex-direction: row;
+  border: 5px solid #529873;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 0 5px 20px;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+/* The image */
+.pet-option-container img {
+  max-width: 270px;
+  max-height: 150px;
+  display: block;
+  border: 3px solid #529873;
+  border-radius: 15px;
+  margin-right: 10px;
+}
+
+/* The header */
+.pet-option-container h5 {
+  font-weight: bold;
+  font-size: 25px;
+  margin: 5px;
+}

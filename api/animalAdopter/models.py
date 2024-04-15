@@ -14,6 +14,14 @@ class AnimalModel(models.Model):
     location = models.CharField(max_length = 280)
     contact = models.CharField(max_length = 280, default = '')
     image = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
+<<<<<<< HEAD
+=======
+    specialNeeds = models.CharField(max_length = 280, default = 'false')
+    about = models.CharField(max_length = 280)
+    specialOne = models.CharField(max_length = 280, default = 'false')
+    specialTwo = models.CharField(max_length = 280, default = 'false')
+    specialThree = models.CharField(max_length = 280, default = 'false')
+>>>>>>> 02b757be1d2afa56632df4cd980729888350a20b
 
 
 class UserModel(models.Model):
@@ -23,4 +31,7 @@ class UserModel(models.Model):
     location = models.CharField(max_length = 280)
     contact = models.CharField(max_length = 280, default = '')
     isShelter = models.CharField(max_length = 280, default = 'no')
+<<<<<<< HEAD
     
+=======
+>>>>>>> 02b757be1d2afa56632df4cd980729888350a20b
