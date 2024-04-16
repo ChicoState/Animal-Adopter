@@ -19,22 +19,35 @@ const UserFormComponent = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();  // Prevent the default form submission behavior
     console.log('Submit button clicked');
 
-    const data = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      data.append(key, value);
-    });
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${localStorage.getItem('token')}`  // Retrieve the token from local storage or your state management solution
+        }
+    };
 
     try {
-      console.log('Sending request...');
-      const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model', data);
-      console.log('Data saved successfully. Animal ID:', response.data.id);
+        console.log('Sending request...');
+        const response = await axios.post('http://127.0.0.1:8000/api/user_profile/', formData, config);
+        console.log('Data saved successfully:', response.data);
+
+        // Clear form data after successful submission
+        setFormData({
+            name: '',
+            age: '',
+            gender: '',
+            location: '',
+            contact: '',
+            isShelter: ''
+        });
+
     } catch (error) {
-      console.error('Error saving data:', error);
+        console.error('Error saving data:', error.response ? error.response.data : error);
     }
-  };
+};
 
   return (
     <div className="form-header" style={{ padding: '45px', textAlign: 'center' }}>

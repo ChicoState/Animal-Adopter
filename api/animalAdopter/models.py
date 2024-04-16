@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 def animal_image_upload(instance, filename):
     return f'animal_images/{filename}'
@@ -22,9 +23,11 @@ class AnimalModel(models.Model):
 
 
 class UserModel(models.Model):
-    name = models.CharField(max_length = 280, default = '')
-    age = models.CharField(max_length = 280)
-    gender = models.CharField(max_length = 280)
-    location = models.CharField(max_length = 280)
-    contact = models.CharField(max_length = 280, default = '')
-    isShelter = models.CharField(max_length = 280, default = 'no')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', default = '')
+    name = models.CharField(max_length=280, default='')
+    age = models.CharField(max_length=280, default = '')
+    gender = models.CharField(max_length=280, default = '')
+    location = models.CharField(max_length=280, default = '')
+    contact = models.CharField(max_length=280, default='')
+    isShelter = models.CharField(max_length=280, default='no')
+

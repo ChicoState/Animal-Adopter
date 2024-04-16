@@ -7,7 +7,15 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import AnimalModel, UserModel
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserModelSerializer
+
+class UserProfileCreateView(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = UserModelSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save(user=request.user)  # Automatically link to the authenticated user
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SignUpView(APIView):
     def post(self, request, *args, **kwargs):
