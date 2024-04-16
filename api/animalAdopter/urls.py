@@ -21,12 +21,17 @@ from .views import get_animal_models
 from .views import create_animal_model
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path
+from .views import LoginView, LogoutView, SignUpView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
     path('api/animalAdopter/models', get_animal_models, name='get_animal_models'),
     path('api/animalAdopter/create_animal_model', create_animal_model, name='create_animal_model'),
+    path('api/login/', LoginView.as_view(), name='login'),
+    path('api/logout/', LogoutView.as_view(), name='logout'),
+    path('api/signup/', SignUpView.as_view(), name='signup'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
