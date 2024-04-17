@@ -14,11 +14,11 @@ class AnimalModel(models.Model):
     location = models.CharField(max_length = 280)
     contact = models.CharField(max_length = 280, default = '')
     image = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
-    specialNeeds = models.CharField(max_length = 280, default = 'false')
     about = models.CharField(max_length = 280)
-    specialOne = models.CharField(max_length = 280, default = 'false')
-    specialTwo = models.CharField(max_length = 280, default = 'false')
-    specialThree = models.CharField(max_length = 280, default = 'false')
+    doesntLikeKids = models.CharField(max_length = 280, default = 'false')
+    doesntLikeMen = models.CharField(max_length = 280, default = 'false')
+    isEnergetic = models.CharField(max_length = 280, default = 'false')
+    isFixed = models.CharField(max_length = 280, default = 'false')
 
 class UserModel(models.Model):
     name = models.CharField(max_length = 280, default = '')

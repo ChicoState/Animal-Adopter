@@ -34,11 +34,11 @@ def create_animal_model(request):
         location = request.POST.get('location')
         contact = request.POST.get('contact')
         name = request.POST.get('name')
-        specialNeeds = request.POST.get('specialNeeds')
         about = request.POST.get('about')
-        specialOne = request.POST.get('specialOne')
-        specialTwo = request.POST.get('specialTwo')
-        specialThree = request.POST.get('specialThree')
+        doesntLikeKids = request.POST.get('doesntLikeKids')
+        doesntLikeMen = request.POST.get('doesntLikeMen')
+        isEnergetic = request.POST.get('isEnergetic')
+        isFixed = request.POST.get('isFixed')
 
         # Assuming you are storing the image file in the request.FILES dictionary
         image = request.FILES.get('image')
@@ -52,12 +52,12 @@ def create_animal_model(request):
             location=location,
             contact=contact,
             name=name,
-            specialNeeds=specialNeeds,
             about=about,
             image=image,
-            specialOne=specialOne,
-            specialTwo=specialTwo,
-            specialThree=specialThree
+            doesntLikeKids=doesntLikeKids,
+            doesntLikeMen=doesntLikeMen,
+            isEnergetic=isEnergetic,
+            isFixed=isFixed
         )
         animal.save()
 
