@@ -4,9 +4,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /api
 
-RUN pip install django django-cors-headers Pillow
+# Install Django, Django CORS Headers, Pillow, and Django REST Framework
+RUN pip install django django-cors-headers Pillow djangorestframework
 
-# copy from the current directory of the Dockerfile to /api in the image
+# Copy from the current directory of the Dockerfile to /api in the image
 COPY . .
 
 EXPOSE 8000
