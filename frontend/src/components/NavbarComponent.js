@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from 'react';
 import { Nav, LogoImg, NavLink, Bars, NavMenu, WebsiteName } from "./Navbar/NavbarElements";
+import { FaUserCircle } from 'react-icons/fa';
 import Logo from "../logo/Logo.png";
 
 const Navbar = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
+
   return (
     <>
       <Nav>
@@ -16,9 +19,13 @@ const Navbar = () => {
                 <NavLink exact to="/" activeClassName="active" className="nav-link">Home</NavLink>
                 <NavLink to="/adopt" activeClassName="active" className="nav-link">Adopt</NavLink>
                 <NavLink to="/rehome" activeClassName="active" className="nav-link">Rehome</NavLink>
-                <NavLink to="/createProfile" activeClassName="active" className="nav-link">Create Profile</NavLink>
-                <NavLink to="/login" activeClassName="active" className="nav-link">Login</NavLink>
+                <FaUserCircle size="4em" onClick={() => setShowDropdown(!showDropdown)} style={{ position: 'absolute', right: '1%', top: '15%',color: 'white', cursor: 'pointer', marginLeft: '20px' }} />
               </NavMenu>
+              {showDropdown && (
+              <div style={{ position: 'absolute', right: '1%', top: '100%', backgroundColor: 'white', padding: '10px', borderRadius: '5px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
+                <NavLink to="/login" activeClassName="active" className="nav-link">Login/Logout</NavLink>
+              </div>
+            )}
             </div>
           </div>
         </div>

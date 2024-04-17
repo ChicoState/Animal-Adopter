@@ -56,6 +56,7 @@ const LoginPage = () => {
         <div className="auth-forms-container">
             {isLoggedIn ? (
                 <div>
+                    <h2>Logout</h2>
                     <button onClick={handleLogout}>Log Out</button>
                 </div>
             ) : (
