@@ -12,11 +12,11 @@ const YourFormComponent = () => {
     location: '',
     contact: '',
     name: '',
-    specialNeeds: '',
     about: '',
-    specialOne: '',
-    specialTwo: '',
-    specialThree: '',
+    doesntLikeKids: '',
+    doesntLikeMen: '',
+    isEnergetic: '',
+    isFixed: '',
     image: null,
   });
 
@@ -97,16 +97,16 @@ const YourFormComponent = () => {
                 Special Accommodations:
               </label> 
               <label>
-                <input type="checkbox" name="specialNeeds" value="true" onChange={handleChange} /> Doesn't like kids.
+                <input type="checkbox" name="doesntLikeKids" value="true" onChange={handleChange} /> Doesn't like kids.
               </label>
               <label>
-                <input type="checkbox" name="specialOne" onChange={handleChange} /> Doesn't like men. 
+                <input type="checkbox" name="doesntLikeMen" onChange={handleChange} /> Doesn't like men. 
               </label>
               <label>
-                <input type="checkbox" name="specialTwo" onChange={handleChange} /> Very Energetic.
+                <input type="checkbox" name="isEnergetic" onChange={handleChange} /> Very Energetic.
               </label>
               <label>
-                <input type="checkbox" name="specialThree" onChange={handleChange} /> Is Spayed or Nuetered.
+                <input type="checkbox" name="isFixed" onChange={handleChange} /> Is Spayed or Nuetered.
               </label>
             </div>
             <label>

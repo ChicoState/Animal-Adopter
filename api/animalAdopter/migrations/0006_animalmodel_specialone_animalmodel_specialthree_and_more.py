@@ -12,17 +12,17 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='animalmodel',
-            name='specialOne',
+            name='doesntLikeMen',
             field=models.CharField(default='false', max_length=280),
         ),
         migrations.AddField(
             model_name='animalmodel',
-            name='specialThree',
+            name='isEnergetic',
             field=models.CharField(default='false', max_length=280),
         ),
         migrations.AddField(
             model_name='animalmodel',
-            name='specialTwo',
+            name='isFixed',
             field=models.CharField(default='false', max_length=280),
         ),
     ]
