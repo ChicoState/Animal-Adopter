@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 def animal_image_upload(instance, filename):
     return f'animal_images/{filename}'
 
