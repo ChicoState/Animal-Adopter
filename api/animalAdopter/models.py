@@ -5,7 +5,12 @@ from django.contrib.auth.models import User
 def animal_image_upload(instance, filename):
     return f'animal_images/{filename}'
 
+def get_default_user():
+    return User.objects.get(username='admin').id
+
+
 class AnimalModel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='animals', default=get_default_user)
     name = models.CharField(max_length = 280, default = '')
     age = models.CharField(max_length = 280)
     gender = models.CharField(max_length = 280)
