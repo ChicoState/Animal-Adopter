@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from .models import AnimalModel, UserModel
 from .serializers import UserSerializer, UserModelSerializer
+from django.contrib.auth.models import User
 
 class UserProfileCreateView(APIView):
     permission_classes = [IsAuthenticated]
@@ -68,45 +69,33 @@ def get_user_models(request):
     user_models = UserModel.objects.all().values()
     return JsonResponse({'user': list(user_models)})
 
-
 @csrf_exempt
 def create_animal_model(request):
     if request.method == 'POST':
-        # Assuming the form fields are named age, gender, price, type, location, contact, name, image
-        age = request.POST.get('age')
-        gender = request.POST.get('gender')
-        price = request.POST.get('price')
-        type = request.POST.get('type')
-        location = request.POST.get('location')
-        contact = request.POST.get('contact')
-        name = request.POST.get('name')
-        about = request.POST.get('about')
-        doesntLikeKids = request.POST.get('doesntLikeKids')
-        doesntLikeMen = request.POST.get('doesntLikeMen')
-        isEnergetic = request.POST.get('isEnergetic')
-        isFixed = request.POST.get('isFixed')
+        username = request.POST.get('username')
+        try:
+            user = User.objects.get(username=username)  # Attempt to fetch the user
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User not found'}, status=404)  # Return an error if user is not found
 
-        # Assuming you are storing the image file in the request.FILES dictionary
-        image = request.FILES.get('image')
-
-        # Create and save the AnimalModel instance
+        # Continue processing if user is found
         animal = AnimalModel(
-            age=age,
-            gender=gender,
-            price=price,
-            type=type,
-            location=location,
-            contact=contact,
-            name=name,
-            about=about,
-            image=image,
-            doesntLikeKids=doesntLikeKids,
-            doesntLikeMen=doesntLikeMen,
-            isEnergetic=isEnergetic,
-            isFixed=isFixed
+            user=user,
+            name=request.POST.get('name'),
+            age=request.POST.get('age'),
+            gender=request.POST.get('gender'),
+            price=request.POST.get('price'),
+            type=request.POST.get('type'),
+            location=request.POST.get('location'),
+            contact=request.POST.get('contact'),
+            about=request.POST.get('about'),
+            doesntLikeKids=request.POST.get('doesntLikeKids', 'false'),
+            doesntLikeMen=request.POST.get('doesntLikeMen', 'false'),
+            isEnergetic=request.POST.get('isEnergetic', 'false'),
+            isFixed=request.POST.get('isFixed', 'false'),
+            image=request.FILES.get('image', None)
         )
         animal.save()
-
-        return JsonResponse({'id': animal.id})
+        return JsonResponse({'message': 'Animal model created successfully', 'id': animal.id})
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
