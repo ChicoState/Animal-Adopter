@@ -7,11 +7,16 @@ const LoginPage = () => {
     const [credentials, setCredentials] = useState({ username: '', email: '', password: '' });
     const [error, setError] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [username, setUsername] = useState(''); // State to store the logged-in username
     const history = useHistory();
 
     useEffect(() => {
-        // Automatically check if the user is logged in when the component mounts
-        setIsLoggedIn(!!localStorage.getItem('token'));
+        const token = localStorage.getItem('token');
+        const storedUsername = localStorage.getItem('username'); // Retrieve the username from local storage
+        if (token && storedUsername) {
+            setIsLoggedIn(true);
+            setUsername(storedUsername);
+        }
     }, []);
 
     const handleChange = (event) => {
@@ -27,7 +32,9 @@ const LoginPage = () => {
         try {
             const response = await axios.post('http://localhost:8000/api/login/', credentials);
             localStorage.setItem('token', response.data.token); // Save the token to localStorage
+            localStorage.setItem('username', credentials.username); // Save the username to localStorage
             setIsLoggedIn(true);
+            setUsername(credentials.username); // Set the username in the state
             history.push('/'); // Redirect to the homepage or dashboard
         } catch (error) {
             setError('Login failed. Please check your username and password and try again.');
@@ -39,7 +46,9 @@ const LoginPage = () => {
         try {
             const response = await axios.post('http://localhost:8000/api/signup/', credentials);
             localStorage.setItem('token', response.data.token); // Save the token to localStorage
+            localStorage.setItem('username', credentials.username); // Save the username to localStorage
             setIsLoggedIn(true);
+            setUsername(credentials.username); // Set the username in the state
             history.push('/createProfile'); // Redirect to profile creation
         } catch (error) {
             setError('Registration failed, the username may be taken. Please try again with a new username.');
@@ -47,8 +56,10 @@ const LoginPage = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token'); // Remove the token from localStorage
+        localStorage.removeItem('username'); // Remove the username from localStorage
         setIsLoggedIn(false);
+        setUsername(''); // Clear the username state
         history.push('/login'); // Redirect back to the login page
     };
 
@@ -56,7 +67,7 @@ const LoginPage = () => {
         <div className="auth-forms-container">
             {isLoggedIn ? (
                 <div>
-                    <h2>Logout</h2>
+                    <h2>Hello, {username}! Would you like to log out?</h2>
                     <button onClick={handleLogout}>Log Out</button>
                 </div>
             ) : (
