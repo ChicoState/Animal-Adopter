@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import '../App.css';
+
 function UserProfile({ username }) {
   const [user, setUser] = useState(null);
   const [animals, setAnimals] = useState([]);
+  const [selectedAnimal, setSelectedAnimal] = useState(null);
 
   useEffect(() => {
-    const authToken = localStorage.getItem('authToken'); // Assuming the token is stored in local storage
-
+    const authToken = localStorage.getItem('authToken');
     const config = {
       headers: { Authorization: `Token ${authToken}` }
     };
 
-    // Fetch the user's profile
     axios.get(`http://127.0.0.1:8000/api/user/profile/${username}`, config)
       .then(response => {
         if (response.status === 200) {
@@ -25,49 +26,87 @@ function UserProfile({ username }) {
         console.error('Error fetching user profile:', error.toString());
       });
 
-    // Fetch the animals associated with the user
     axios.get(`http://127.0.0.1:8000/api/user/animals/${username}`, config)
       .then(response => {
-        console.log('Animals data:', response.data); // Debugging line to check what you're actually getting
-        if (response.status === 200 && response.data && Array.isArray(response.data)) {
+        if (response.status === 200 && response.data) {
           setAnimals(response.data);
         } else {
-          console.error('Failed to fetch animals or data format incorrect:', response.status);
-          setAnimals([]); // Ensure animals is always an array
+          console.error('Failed to fetch animals:', response.status);
+          setAnimals([]);
         }
       })
       .catch(error => {
         console.error('Error fetching animals:', error.toString());
-        setAnimals([]); // Error safe fallback
+        setAnimals([]);
       });
   }, [username]);
+
+  const handleAnimalClick = (index) => {
+    setSelectedAnimal(selectedAnimal === index ? null : index);
+  };
 
   return (
     <div className="profile-page">
       {user ? (
         <div className="user-info">
-          <h1>{user.name}</h1>
-          <p>Age: {user.age}</p>
-          <p>Gender: {user.gender}</p>
-          <p>Location: {user.location}</p>
-          <p>Contact: {user.contact}</p>
         </div>
       ) : (
         <p>Loading user data...</p>
       )}
 
-      <div className="animals-list">
-        <h2>My Animals</h2>
-        {animals.length > 0 ? (
-          animals.map((animal, index) => (
-            <div key={index} className="animal">
-              <h5>{animal.name}</h5>
-              <p>Type: {animal.type}</p>
-              <p>Age: {animal.age}</p>
+      <div className="pet-list-container">
+        <div className="pet-box-container">
+          {animals.map((animal, index) => (
+            <div key={index} className="pet-box" onClick={() => handleAnimalClick(index)}>
+              <div className="top">
+                <div className="image-container">
+                  <img src={`http://127.0.0.1:8000${animal.image}`} alt={animal.type} />
+                </div>
+                <div className="pet-info">
+                  <div className="name-gender">
+                    <h5>{animal.name}</h5>
+                    <div className="gender-img">
+                      {animal.gender === "male" ? (
+                        <img src={`http://127.0.0.1:8000/media/genderSymbols/male.png`} alt="male" />
+                      ) : animal.gender === "female" ? (
+                        <img src={`http://127.0.0.1:8000/media/genderSymbols/female.png`} alt="female" />
+                      ) : (
+                        <img src={`http://127.0.0.1:8000/media/genderSymbols/unknown.png`} alt="unknown" />
+                      )}
+                    </div>
+                  </div>
+                  <p>Breed: {animal.type}</p>
+                  <p>Age: {animal.age}</p>
+                  <p>Price: ${animal.price}</p>
+                  <p>Location: {animal.location}</p>
+                </div>
+              </div>
             </div>
-          ))
-        ) : (
-          <p>No animals listed or error fetching animals.</p>
+          ))}
+        </div>
+        {selectedAnimal !== null && (
+          <div className="pet-panel show">
+            <div className="pet-panel-content">
+              <div className="top">
+                <div className="image-container">
+                  <img src={`http://127.0.0.1:8000${animals[selectedAnimal].image}`} alt={animals[selectedAnimal].type} />
+                </div>
+                <div className="pet-info">
+                  <h5>{animals[selectedAnimal].name}</h5>
+                  <p>Breed: {animals[selectedAnimal].type}</p>
+                  <p>Age: {animals[selectedAnimal].age}</p>
+                  <p>Price: ${animals[selectedAnimal].price}</p>
+                  <p>Location: {animals[selectedAnimal].location}</p>
+                  <p>Contact: {animals[selectedAnimal].contact}</p>
+                  <p>Description: {animals[selectedAnimal].about}</p>
+                </div>
+              </div>
+            </div>
+            <div className="buttons">
+              <button className="adopt-button">Adopt</button>
+              <button className="close-button" onClick={() => setSelectedAnimal(null)}>Close</button>
+            </div>
+          </div>
         )}
       </div>
     </div>
