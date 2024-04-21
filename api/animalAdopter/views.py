@@ -8,8 +8,34 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from .models import AnimalModel, UserModel
-from .serializers import UserSerializer, UserModelSerializer
+from .serializers import UserSerializer, UserModelSerializer, AnimalModelSerializer
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import get_user_model
+from rest_framework.permissions import AllowAny
+
+
+@csrf_exempt
+def user_profile_view(request, username):
+    if request.method == 'GET':
+        User = get_user_model()
+        user = get_object_or_404(User, username=username)
+        user_profile = get_object_or_404(UserModel, user=user)
+        serializer = UserModelSerializer(user_profile)
+        return JsonResponse(serializer.data, safe=False)
+
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+@csrf_exempt
+def user_animals_view(request, username):
+    if request.method == 'GET':
+        User = get_user_model()
+        user = get_object_or_404(User, username=username)
+        animals = AnimalModel.objects.filter(user=user)
+        serializer = AnimalModelSerializer(animals, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 class UserProfileCreateView(APIView):
     permission_classes = [IsAuthenticated]

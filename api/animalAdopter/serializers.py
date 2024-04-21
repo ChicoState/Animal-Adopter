@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
-from .models import UserModel
+from .models import UserModel, AnimalModel
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,3 +22,8 @@ class UserModelSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
         return super(UserModelSerializer, self).create(validated_data)
+
+class AnimalModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnimalModel
+        fields = ['name', 'age', 'gender', 'price', 'type', 'specialNeeds', 'about', 'location', 'contact', 'doesntLikeKids', 'doesntLikeMen', 'isEnergetic', 'isFixed', 'image']

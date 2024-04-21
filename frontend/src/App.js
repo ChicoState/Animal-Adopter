@@ -6,6 +6,7 @@ import AdoptPage from './pages/adopt';
 import RehomePage from './pages/rehome';
 import LoginPage from './pages/login';
 import Navbar from './components/NavbarComponent';
+import ProfilePage from './pages/profilePage';
 import UserFormComponent from './components/UserFormComponent';
 
 import './home.css';
@@ -98,6 +99,9 @@ function App() {
             </Route>
             <Route path="/createProfile">
               <UserFormComponent />
+            </Route>
+            <Route path="/profilePage">
+              <ProfilePage />
             </Route>
           </Switch>
         </div>
