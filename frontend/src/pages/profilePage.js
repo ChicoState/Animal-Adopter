@@ -48,7 +48,10 @@ function UserProfile({ username }) {
   return (
     <div className="profile-page">
       {user ? (
-        <div className="user-info">
+        <div className="user-info-card">
+          <h1 className="user-name">{user.name}</h1>
+          <p className="user-detail"><i className="fas fa-map-marker-alt"></i> {user.location}</p>
+          <p className="user-detail"><i className="fas fa-envelope"></i> {user.contact}</p>
         </div>
       ) : (
         <p>Loading user data...</p>
@@ -118,7 +121,6 @@ const ProfilePage = () => {
 
   return (
     <div className="container">
-      <h1>Profile Page for {username}</h1>
       <UserProfile username={username} />
     </div>
   );
