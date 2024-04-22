@@ -5,9 +5,19 @@ import '../App.css';
 
 function PetList({ pet }) {
   const [selectedPet, setSelectedPet] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePetClick = (index) => {
     setSelectedPet(selectedPet === index ? null : index);
+    setCurrentImageIndex(0);
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? pet[selectedPet].images.length - 1 : prevIndex - 1));
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === pet[selectedPet].images.length - 1 ? 0 : prevIndex + 1));
   };
 
   return (
@@ -17,7 +27,9 @@ function PetList({ pet }) {
           <div key={index} className="pet-box" onClick={() => handlePetClick(index)}>
             <div className="top">
               <div className="image-container">
-                <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} />
+                {item.images.length > 0 && (
+                  <img src={`http://127.0.0.1:8000/media/${item.images[0].image}`} alt={item.type} />
+                )}
               </div>
               <div className="pet-info">
                 <div className="name-gender">
@@ -48,7 +60,12 @@ function PetList({ pet }) {
           <div className="pet-panel-content">
             <div className="top">
               <div className="image-container">
-                <img src={`http://127.0.0.1:8000/media/${pet[selectedPet].image}`} alt={pet[selectedPet].type} />
+                {/* Display the current image */}
+                <img src={`http://127.0.0.1:8000/media/${pet[selectedPet].images[currentImageIndex].image}`} alt={pet[selectedPet].type} />
+              </div>
+              <div className="scroll">
+                <button className="prev-button" onClick={handlePrevImage}>Previous</button>
+                <button className="next-button" onClick={handleNextImage}>Next</button>
               </div>
               <div className="pet-info">
                 <div className="name-gender">

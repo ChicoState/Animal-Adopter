@@ -115,7 +115,7 @@ const YourFormComponent = () => {
             </label>
             <label>
               Image:
-              <input type="file" name="image" onChange={handleChange} />
+              <input type="file" name="image" onChange={handleChange} multiple />
             </label>
             <label>
               Location:

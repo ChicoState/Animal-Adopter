@@ -13,13 +13,15 @@ class AnimalModel(models.Model):
     about = models.CharField(max_length = 280)
     location = models.CharField(max_length = 280)
     contact = models.CharField(max_length = 280, default = '')
-    image = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
+    images = models.ManyToManyField('AnimalImage')
     specialNeeds = models.CharField(max_length = 280, default = 'false')
     about = models.CharField(max_length = 280)
     specialOne = models.CharField(max_length = 280, default = 'false')
     specialTwo = models.CharField(max_length = 280, default = 'false')
     specialThree = models.CharField(max_length = 280, default = 'false')
 
+class AnimalImage(models.Model):
+    image = models.ImageField(upload_to='animal_images')
 
 class UserModel(models.Model):
     name = models.CharField(max_length = 280, default = '')

@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from datetime import datetime
-from .models import AnimalModel
+from .models import AnimalModel, AnimalImage
 from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
@@ -16,7 +16,17 @@ def index(request):
 
 def get_animal_models(request):
     animal_models = AnimalModel.objects.all().values()
-    return JsonResponse({'pet': list(animal_models)})
+    animal_images = AnimalImage.objects.all().values()
+
+    serialized_models = serializers.serialize('json', animal_models)
+    serialized_images = serializers.serialize('json', animal_images)
+    
+    data = {
+        'pet': serialized_models,
+        'animal_images': serialized_images
+    }
+
+    return JsonResponse(data)
 
 def get_user_models(request):
     user_models = UserModel.objects.all().values()
@@ -40,9 +50,6 @@ def create_animal_model(request):
         specialTwo = request.POST.get('specialTwo')
         specialThree = request.POST.get('specialThree')
 
-        # Assuming you are storing the image file in the request.FILES dictionary
-        image = request.FILES.get('image')
-
         # Create and save the AnimalModel instance
         animal = AnimalModel(
             age=age,
@@ -54,12 +61,18 @@ def create_animal_model(request):
             name=name,
             specialNeeds=specialNeeds,
             about=about,
-            image=image,
             specialOne=specialOne,
             specialTwo=specialTwo,
             specialThree=specialThree
         )
         animal.save()
+
+        # Assuming you are storing the image file in the request.FILES dictionary
+        images = request.FILES.getlist('image')
+        
+        for image in images:
+            animal.images.create(image=image)
+
 
         return JsonResponse({'id': animal.id})
     else:
