@@ -1,14 +1,13 @@
 import React from "react";
-import LoginFormComponent from '../components/LoginFormComponent';
 
-const LoginFormPage = () => {
+const LoginPage = () => {
   return (
     <div style={{ padding: '45px', textAlign: 'center' }}>
+      <h1 style={{ marginBottom: '20px' }}>Apply to Adopt a Pet </h1>
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-        <LoginFormComponent />
       </div>
     </div>
   );
 };
 
-export default LoginFormPage;
+export default LoginPage;

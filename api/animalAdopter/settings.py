@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+s=_7i$trp3dr@(jd98t(erqa&vtxu$*j3h-zzufjx=l_%4rt4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'http://localhost:8000/', '127.0.0.1', 'localhost:8000', 'localhost']
+ALLOWED_HOSTS = ['0.0.0.0', 'http://localhost:8000/', '127.0.0.1']
 
 
 # Application definition
@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
 ]
 
 CORS_ORIGIN_WHITELIST = [
@@ -135,14 +133,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-}
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # The exact URL of your frontend
-]

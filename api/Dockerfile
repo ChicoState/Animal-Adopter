@@ -1,16 +1,12 @@
-FROM python:3.8.13-bullseye
+FROM  python:3.8.13-bullseye
 
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /api
 
-# Copy requirements.txt first to leverage Docker cache
-COPY requirements.txt /api/
+RUN pip install django django-cors-headers Pillow
 
-# Install dependencies from requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of your application
+# copy from the current directory of the Dockerfile to /api in the image
 COPY . .
 
 EXPOSE 8000
