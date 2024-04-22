@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='animalmodel',
-            name='specialNeeds',
+            name='doesntLikeKids',
             field=models.CharField(default='false', max_length=280),
         ),
     ]

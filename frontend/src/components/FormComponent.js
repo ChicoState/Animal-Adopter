@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import './FormComponent.css';
 
 const YourFormComponent = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     age: '',
     gender: '',
     price: '',
@@ -12,37 +11,49 @@ const YourFormComponent = () => {
     location: '',
     contact: '',
     name: '',
-    specialNeeds: '',
     about: '',
-    specialOne: '',
-    specialTwo: '',
-    specialThree: '',
+    doesntLikeKids: '',
+    doesntLikeMen: '',
+    isEnergetic: '',
+    isFixed: '',
     image: null,
-  });
+    username: ''
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+  const [successMessage, setSuccessMessage] = useState('');
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      setFormData(prevFormData => ({ ...prevFormData, username: storedUsername }));
+    }
+  }, []);
 
   const handleChange = (e) => {
-    if (e.target.name === 'image') {
-      setFormData({ ...formData, [e.target.name]: e.target.files[0] });
-    } else if(e.target.type === 'checkbox') {
-      setFormData({ ...formData, [e.target.name]: e.target.checked ? "true" : "false" });
+    const { name, value } = e.target;
+    if (name === 'image') {
+      setFormData({ ...formData, [name]: e.target.files[0] });
+    } else if (e.target.type === 'checkbox') {
+      setFormData({ ...formData, [name]: e.target.checked ? "true" : "false" });
     } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+      setFormData({ ...formData, [name]: value });
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submit button clicked');
-
     const data = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
       data.append(key, value);
     });
 
     try {
-      console.log('Sending request...');
       const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model', data);
       console.log('Data saved successfully. Animal ID:', response.data.id);
+      setFormData(initialFormData);  // Clear form data after successful save
+      setSuccessMessage('Animal information saved successfully!');  // Set success message
+      setTimeout(() => setSuccessMessage(''), 3000);  // Clear message after 3 seconds
     } catch (error) {
       console.error('Error saving data:', error);
     }
