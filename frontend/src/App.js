@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+import { AuthProvider } from './AuthContext';  // Import AuthProvider
 import AdoptPage from './pages/adopt';
 import RehomePage from './pages/rehome';
 import LoginPage from './pages/login';
 import Navbar from './components/NavbarComponent';
+import ProfilePage from './pages/profilePage';
 import UserFormComponent from './components/UserFormComponent';
 
 import './home.css';
@@ -19,7 +21,7 @@ function HomePage({ animalTypes }) {
             <div className="top">
               <div>
                 <h5>{type.option}</h5>
-                <img src={`http://127.0.0.1:8000/media/homeImages/${type.value}.jpeg`} />
+                <img src={`http://127.0.0.1:8000/media/homeImages/${type.value}.jpeg`}/>
               </div>
             </div>
           </div>
@@ -67,39 +69,44 @@ function App() {
   console.log('Pet state:', pet); // Log the pet state
 
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <Switch>
-          <Route path="/" exact>
-            <div className="row">
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body" style={{ overflow: 'auto', paddingTop: '70px' }}>
-                    <HomePage animalTypes={animalTypes} />
+    <AuthProvider> {/* Wrap everything inside AuthProvider */}
+      <Router>
+        <div>
+          <Navbar />
+          <Switch>
+            <Route path="/" exact>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="card">
+                    <div className="card-body" style={{ overflow: 'auto', paddingTop: '70px' }}>
+                      <HomePage animalTypes={animalTypes} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/adopt">
-            <AdoptPage />
-          </Route>
-          <Route path="/rehome">
-            <RehomePage />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/createProfile">
-            <UserFormComponent />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+            </Route>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <Route path="/adopt">
+              <AdoptPage />
+            </Route>
+            <Route path="/rehome">
+              <RehomePage />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/createProfile">
+              <UserFormComponent />
+            </Route>
+            <Route path="/profilePage">
+              <ProfilePage />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
