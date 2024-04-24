@@ -24,6 +24,7 @@ const Navbar = () => {
               {showDropdown && (
               <div style={{ position: 'absolute', right: '1%', top: '100%', backgroundColor: 'white', padding: '10px', borderRadius: '5px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
                 <NavLink to="/login" activeClassName="active" className="nav-link">Login/Logout</NavLink>
+                <NavLink to="/profilePage" activeClassName="active" className="nav-link">Your Profile</NavLink>
               </div>
             )}
             </div>
