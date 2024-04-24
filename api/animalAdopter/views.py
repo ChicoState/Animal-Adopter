@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
-from .models import AnimalModel, UserModel
+from .models import AnimalModel, AnimalImage, UserModel
 from .serializers import UserSerializer, UserModelSerializer, AnimalModelSerializer
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -89,7 +89,17 @@ def index(request):
 
 def get_animal_models(request):
     animal_models = AnimalModel.objects.all().values()
-    return JsonResponse({'pet': list(animal_models)})
+    animal_images = AnimalImage.objects.all().values()
+
+    serialized_models = serializers.serialize('json', animal_models)
+    serialized_images = serializers.serialize('json', animal_images)
+    
+    data = {
+        'pet': serialized_models,
+        'animal_images': serialized_images
+    }
+
+    return JsonResponse(data)
 
 def get_user_models(request):
     user_models = UserModel.objects.all().values()
@@ -119,8 +129,12 @@ def create_animal_model(request):
             doesntLikeMen=request.POST.get('doesntLikeMen', 'false'),
             isEnergetic=request.POST.get('isEnergetic', 'false'),
             isFixed=request.POST.get('isFixed', 'false'),
-            image=request.FILES.get('image', None)
+            images = request.FILES.getlist('image')
         )
+
+        for image in images:
+            animal.images.create(image=image)
+ 
         animal.save()
         return JsonResponse({'message': 'Animal model created successfully', 'id': animal.id})
     else:
