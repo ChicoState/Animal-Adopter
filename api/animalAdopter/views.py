@@ -129,11 +129,13 @@ def create_animal_model(request):
             doesntLikeMen=request.POST.get('doesntLikeMen', 'false'),
             isEnergetic=request.POST.get('isEnergetic', 'false'),
             isFixed=request.POST.get('isFixed', 'false'),
-            images = request.FILES.getlist('image')
         )
 
-        for image in images:
-            animal.images.create(image=image)
+        animal.save()
+
+        for image in request.FILES.getlist('image'):
+            animal_image = AnimalImageModel(animal=animal, image=image)
+            animal_image.save()
  
         animal.save()
         return JsonResponse({'message': 'Animal model created successfully', 'id': animal.id})
