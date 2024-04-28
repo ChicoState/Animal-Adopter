@@ -20,12 +20,15 @@ class AnimalModel(models.Model):
     about = models.CharField(max_length = 280)
     location = models.CharField(max_length = 280)
     contact = models.CharField(max_length = 280, default = '')
-    image = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
     about = models.CharField(max_length = 280)
     doesntLikeKids = models.CharField(max_length = 280, default = 'false')
     doesntLikeMen = models.CharField(max_length = 280, default = 'false')
     isEnergetic = models.CharField(max_length = 280, default = 'false')
     isFixed = models.CharField(max_length = 280, default = 'false')
+
+class AnimalImage(models.Model):
+    animal = models.ForeignKey(AnimalModel, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='animal_images')
 
 class UserModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', default = '')

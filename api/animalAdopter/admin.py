@@ -3,6 +3,7 @@ from . import models
 from .models import UserModel
 
 admin.site.register(models.AnimalModel)
+admin.site.register(models.AnimalImage)
 
 @admin.register(UserModel)
 class UserModelAdmin(admin.ModelAdmin):
