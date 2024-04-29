@@ -3,6 +3,40 @@ import axios from 'axios';
 
 import '../App.css';
 
+
+class TimeAgo extends React.Component {
+  calculateTimeAgo(date) {
+    const currentDate = new Date();
+    const pastDate = new Date(date);
+
+    const timeDifference = currentDate - pastDate;
+
+    const yearsAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365));
+    const monthsAgo = Math.floor((timeDifference % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+
+    return { years: yearsAgo, months: monthsAgo };
+  }
+
+  render() {
+    const { date } = this.props;
+    const { years, months } = this.calculateTimeAgo(date);
+
+    if (years > 0) {
+      return (
+        <div>
+          <p>{years} year{years !== 1 ? 's' : ''}</p>
+          <p>{months} month{months !== 1 ? 's' : ''} old</p>
+        </div>
+      );
+    } else if (months > 0) {
+      return <p>{months} month{months !== 1 ? 's' : ''} old</p>;
+    } else {
+      return <p>&lt; 1 month old</p>;
+    }
+  }
+}
+
+
 function PetList({ pet }) {
   const [selectedPet, setSelectedPet] = useState(null);
 
@@ -34,7 +68,7 @@ function PetList({ pet }) {
                 </div>
               </div>
               <p>Breed: {item.type}</p>
-              <p>Age: {item.age}</p>
+              <p>Age: <TimeAgo date={item.age} /></p>
               <p>Price: ${item.price}</p>
               <p>Location: {item.location}</p>
 
@@ -64,7 +98,7 @@ function PetList({ pet }) {
                   </div>
                 </div>
                 <p>Breed: {pet[selectedPet].type}</p>
-                <p>Age: {pet[selectedPet].age}</p>
+                <p>Age: <TimeAgo date={pet[selectedPet].age} /></p>
                 <p>Price: ${pet[selectedPet].price}</p>
                 <p>Location: {pet[selectedPet].location}</p>
                 <p>Contact: {pet[selectedPet].contact}</p>
