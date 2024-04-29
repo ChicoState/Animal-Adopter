@@ -22,6 +22,7 @@ const YourFormComponent = () => {
 
   const [formData, setFormData] = useState(initialFormData);
   const [successMessage, setSuccessMessage] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -29,6 +30,10 @@ const YourFormComponent = () => {
       setFormData(prevFormData => ({ ...prevFormData, username: storedUsername }));
     }
   }, []);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,11 +54,18 @@ const YourFormComponent = () => {
     });
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model', data);
-      console.log('Data saved successfully. Animal ID:', response.data.id);
-      setFormData(initialFormData);  // Clear form data after successful save
-      setSuccessMessage('Animal information saved successfully!');  // Set success message
-      setTimeout(() => setSuccessMessage(''), 3000);  // Clear message after 3 seconds
+      if(isChecked) {
+        const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model', data);
+        console.log('Data saved successfully. Animal ID:', response.data.id);
+        setSuccessMessage('Animal information saved successfully! Please enter your next animal.');  // Set success message
+        setTimeout(() => setSuccessMessage(''), 3000);  // Clear message after 3 seconds
+      } else {
+        const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model', data);
+        console.log('Data saved successfully. Animal ID:', response.data.id);
+        setFormData(initialFormData);  // Clear form data after successful save
+        setSuccessMessage('Animal information saved successfully!');  // Set success message
+        setTimeout(() => setSuccessMessage(''), 3000);  // Clear message after 3 seconds
+    }
     } catch (error) {
       console.error('Error saving data:', error);
     }
@@ -132,6 +144,9 @@ const YourFormComponent = () => {
           <label>
             Contact:
             <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
+          </label>
+          <label>
+            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} /> Submitting multiple animals?
           </label>
           <button type="submit">Submit</button>
           {successMessage && <div className="success-message">{successMessage}</div>}  {/* Success message at the bottom */}
