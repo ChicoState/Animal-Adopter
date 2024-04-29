@@ -2,6 +2,7 @@ from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -16,14 +17,17 @@ from rest_framework.permissions import AllowAny
 
 
 @csrf_exempt
-def user_profile_view(request, username):
+@require_http_methods(["GET", "POST"])  # Allow both GET and POST requests
+def user_profile_view(request, username=None):
     if request.method == 'GET':
         User = get_user_model()
-        user = get_object_or_404(User, username=username)
+        user = get_object_or_404(User, username=username) if username else request.user
         user_profile = get_object_or_404(UserModel, user=user)
         serializer = UserModelSerializer(user_profile)
         return JsonResponse(serializer.data, safe=False)
-
+    elif request.method == 'POST':
+        # Handle POST request if needed
+        pass
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 @csrf_exempt
