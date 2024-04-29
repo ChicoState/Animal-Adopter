@@ -17,7 +17,7 @@ function PetList({ pet }) {
           <div key={index} className="pet-box" onClick={() => handlePetClick(index)}>
             <div className="top">
               <div className="image-container">
-                <img src={`http://127.0.0.1:8000/media/${item.image1}`} alt={item.type} />
+                <img src={`http://127.0.0.1:8000/media/${item.image}`} alt={item.type} />
               </div>
               <div className="pet-info">
                 <div className="name-gender">
@@ -48,7 +48,7 @@ function PetList({ pet }) {
           <div className="pet-panel-content">
             <div className="top">
               <div className="image-container">
-                <img src={`http://127.0.0.1:8000/media/${pet[selectedPet].image1}`} alt={pet[selectedPet].type} />
+                <img src={`http://127.0.0.1:8000/media/${pet[selectedPet].image}`} alt={pet[selectedPet].type} />
               </div>
               <div className="pet-info">
                 <div className="name-gender">

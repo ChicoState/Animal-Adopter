@@ -119,7 +119,7 @@ def create_animal_model(request):
             doesntLikeMen=request.POST.get('doesntLikeMen', 'false'),
             isEnergetic=request.POST.get('isEnergetic', 'false'),
             isFixed=request.POST.get('isFixed', 'false'),
-            image1=request.FILES.get('image1', None),
+            image=request.FILES.get('image', None),
             image2=request.FILES.get('image2', None),
             image3=request.FILES.get('image3', None),
             image4=request.FILES.get('image4', None),

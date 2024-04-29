@@ -20,7 +20,7 @@ class AnimalModel(models.Model):
     about = models.CharField(max_length = 280)
     location = models.CharField(max_length = 280)
     contact = models.CharField(max_length = 280, default = '')
-    image1 = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
+    image = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
     image2 = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
     image3 = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
     image4 = models.ImageField(upload_to=animal_image_upload, max_length = 144, null=True)
