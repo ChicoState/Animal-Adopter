@@ -35,36 +35,45 @@ class TimeAgo extends React.Component {
   }
 }
 
-
 function PetList({ pet }) {
   const [selectedPet, setSelectedPet] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [validImages, setValidImages] = useState([]);
 
+  // Handle clicking on a pet
   const handlePetClick = (index) => {
     setSelectedPet(selectedPet === index ? null : index);
-    setCurrentImageIndex(0);
+    if (index !== null) {
+      const filteredImages = getValidImages(index);
+      setValidImages(filteredImages);
+      setCurrentImageIndex(0);  // Start with the first valid image
+    }
   };
 
+  // Fetch non-null images for a specific pet
+  const getValidImages = (petIndex) => {
+    return [
+      pet[petIndex].image,
+      pet[petIndex].image2,
+      pet[petIndex].image3,
+      pet[petIndex].image4,
+      pet[petIndex].image5
+    ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
+  }
+
+  // Handle the next image navigation
   const handleNextImage = () => {
-    let nextIndex = (currentImageIndex + 1) % 5;
-    if (nextIndex !== 0) { // The images are listed as "image" "image2" "image3" "image4" "image5"
-      while (pet[selectedPet][`image${nextIndex + 1}`] === null) { // First image wouldn't work for this line
-        nextIndex = (nextIndex + 1) % 5;
-      }
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex + 1) % validImages.length);
     }
-    setCurrentImageIndex(nextIndex);
   };
 
+  // Handle the previous image navigation
   const handlePrevImage = () => {
-    let prevIndex = (currentImageIndex - 1 + 5) % 5;
-    if (prevIndex !== 0) {
-      while (pet[selectedPet][`image${prevIndex + 1}`] === null) {
-        prevIndex = (prevIndex - 1 + 5) % 5;
-      }
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex - 1 + validImages.length) % validImages.length);
     }
-    setCurrentImageIndex(prevIndex);
   };
-
   return (
     <div className="pet-list-container">
       <div className="pet-box-container">
@@ -141,7 +150,6 @@ function PetList({ pet }) {
     </div>
   );
 }
-
 
 
 const RehomeFormPage = () => {
