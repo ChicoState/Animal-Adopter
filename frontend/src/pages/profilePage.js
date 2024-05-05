@@ -55,16 +55,13 @@ function UserProfile({ username }) {
   // Fetch non-null images for a specific pet
   const getValidImages = (petIndex) => {
     const pet = animals[petIndex]; // Accessing the pet data from the animals array
-    if (pet) {
-      return [
-        pet.image,
-        pet.image2,
-        pet.image3,
-        pet.image4,
-        pet.image5
-      ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
-    }
-    return []; // Return an empty array if the pet at the specified index is not found
+    return [
+      pet.image,
+      pet.image2,
+      pet.image3,
+      pet.image4,
+      pet.image5
+    ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
   }
 
   // Handle the next image navigation

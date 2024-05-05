@@ -43,7 +43,3 @@ class UserModel(models.Model):
     contact = models.CharField(max_length=280, default='')
     isShelter = models.CharField(max_length=280, default='no')
     image = models.ImageField(upload_to=user_image_upload, max_length = 144, null=True)
-    image2 = models.ImageField(upload_to=user_image_upload, max_length = 144, null=True)
-    image3 = models.ImageField(upload_to=user_image_upload, max_length = 144, null=True)
-    image4 = models.ImageField(upload_to=user_image_upload, max_length = 144, null=True)
-    image5 = models.ImageField(upload_to=user_image_upload, max_length = 144, null=True)
