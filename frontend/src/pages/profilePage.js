@@ -43,17 +43,6 @@ function UserProfile({ username }) {
       });
   }, [username]);
 
-  // Fetch non-null images for a specific pet
-  const getValidImages = (petIndex) => {
-    return [
-      username[petIndex].image,
-      username[petIndex].image2,
-      username[petIndex].image3,
-      username[petIndex].image4,
-      username[petIndex].image5
-    ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
-  }
-
   const handleAnimalClick = (index) => {
     setSelectedAnimal(selectedAnimal === index ? null : index);
     if (index !== null) {
@@ -62,6 +51,21 @@ function UserProfile({ username }) {
       setCurrentImageIndex(0);  // Start with the first valid image
     }
   };
+
+  // Fetch non-null images for a specific pet
+  const getValidImages = (petIndex) => {
+    const pet = animals[petIndex]; // Accessing the pet data from the animals array
+    if (pet) {
+      return [
+        pet.image,
+        pet.image2,
+        pet.image3,
+        pet.image4,
+        pet.image5
+      ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
+    }
+    return []; // Return an empty array if the pet at the specified index is not found
+  }
 
   // Handle the next image navigation
   const handleNextImage = () => {
@@ -95,7 +99,7 @@ function UserProfile({ username }) {
             <div key={index} className="pet-box" onClick={() => handleAnimalClick(index)}>
               <div className="top">
                 <div className="image-container">
-                  <img src={`http://127.0.0.1:8000/media/${animal.image}`} alt={animal.type} />
+                  <img src={`http://127.0.0.1:8000${animal.image}`} alt={animal.type} />
                 </div>
                 <div className="pet-info">
                   <div className="name-gender">
@@ -124,7 +128,7 @@ function UserProfile({ username }) {
             <div className="pet-panel-content">
               <div className="top">
                 <div className="image-container">
-                  <img src={`http://127.0.0.1:8000/media/${currentImageIndex === 0 ? animals[selectedAnimal].image : animals[selectedAnimal][`image${currentImageIndex + 1}`]}`} alt={animals[selectedAnimal].type} />
+                  <img src={`http://127.0.0.1:8000${currentImageIndex === 0 ? animals[selectedAnimal].image : animals[selectedAnimal][`image${currentImageIndex + 1}`]}`} alt={animals[selectedAnimal].type} />
                   <div className='image-cycle'>
                     <button className="prev-button" onClick={handlePrevImage}>{"<"}</button>
                     <label> {currentImageIndex + 1} </label>
