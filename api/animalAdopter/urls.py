@@ -15,13 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
 from .views import index
 from .views import get_animal_models
 from .views import create_animal_model, user_profile_view, user_animals_view
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, include
+from django.urls import path
 from .views import LoginView, LogoutView, SignUpView, UserProfileCreateView
 
 urlpatterns = [
@@ -35,7 +34,6 @@ urlpatterns = [
     path('api/user_profile/', UserProfileCreateView.as_view(), name='user_profile_create'),
     path('api/user/profile/<str:username>/', user_profile_view, name='user-profile'),
     path('api/user/animals/<str:username>/', user_animals_view, name='user-animals'),
-    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
