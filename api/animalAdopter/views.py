@@ -135,6 +135,8 @@ def animals_by_type_view(request, animal_type):
     animals = AnimalModel.objects.filter(type=animal_type)
 
     # Serialize animals to JSON
-    data = [{'id': animal.id, 'name': animal.name} for animal in animals]
+    data = [{'name': animal.name, 'age': animal.age, 'gender': animal.gender, 'price': animal.price, 'type': animal.type,
+             'location': animal.location, 'contact': animal.contact, 'about': animal.about, 'doesntLikeKids': animal.doesntLikeKids,
+             'doesntLikeMen': animal.doesntLikeMen, 'isEnergetic': animal.isEnergetic, 'isFixed': animal.isFixed} for animal in animals]
 
     return JsonResponse({'animals': data})
