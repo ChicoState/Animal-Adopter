@@ -115,6 +115,7 @@ function PetList({ pet }) {
                 <img src={`http://127.0.0.1:8000/media/${currentImageIndex === 0 ? pet[selectedPet].image : pet[selectedPet][`image${currentImageIndex + 1}`]}`} alt={pet[selectedPet].type} />
                 <div className='image-cycle'>
                   <button className="prev-button" onClick={handlePrevImage}>{"<"}</button>
+                  <label> {currentImageIndex + 1} </label>
                   <button className="next-button" onClick={handleNextImage}>{">"}</button>
                 </div>
               </div>
