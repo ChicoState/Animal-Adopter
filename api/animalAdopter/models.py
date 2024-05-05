@@ -8,6 +8,9 @@ def animal_image_upload(instance, filename):
 def get_default_user():
     return User.objects.get(username='admin').id
 
+def user_image_upload(instance, filename):
+    return f'user_images/{filename}'
+
 
 class AnimalModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='animals', default=get_default_user)
@@ -39,4 +42,4 @@ class UserModel(models.Model):
     location = models.CharField(max_length=280, default = '')
     contact = models.CharField(max_length=280, default='')
     isShelter = models.CharField(max_length=280, default='no')
-
+    image = models.ImageField(upload_to=user_image_upload, max_length = 144, null=True)
