@@ -6,6 +6,8 @@ import '../App.css';
 function UserProfile({ username }) {
   const [user, setUser] = useState(null);
   const [animals, setAnimals] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [validImages, setValidImages] = useState([]);
   const [selectedAnimal, setSelectedAnimal] = useState(null);
 
   useEffect(() => {
@@ -41,8 +43,38 @@ function UserProfile({ username }) {
       });
   }, [username]);
 
+  // Fetch non-null images for a specific pet
+  const getValidImages = (petIndex) => {
+    return [
+      username[petIndex].image,
+      username[petIndex].image2,
+      username[petIndex].image3,
+      username[petIndex].image4,
+      username[petIndex].image5
+    ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
+  }
+
   const handleAnimalClick = (index) => {
     setSelectedAnimal(selectedAnimal === index ? null : index);
+    if (index !== null) {
+      const filteredImages = getValidImages(index);
+      setValidImages(filteredImages);
+      setCurrentImageIndex(0);  // Start with the first valid image
+    }
+  };
+
+  // Handle the next image navigation
+  const handleNextImage = () => {
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex + 1) % validImages.length);
+    }
+  };
+
+  // Handle the previous image navigation
+  const handlePrevImage = () => {
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex - 1 + validImages.length) % validImages.length);
+    }
   };
 
   return (
@@ -63,7 +95,7 @@ function UserProfile({ username }) {
             <div key={index} className="pet-box" onClick={() => handleAnimalClick(index)}>
               <div className="top">
                 <div className="image-container">
-                  <img src={`http://127.0.0.1:8000${animal.image}`} alt={animal.type} />
+                  <img src={`http://127.0.0.1:8000/media/${animal.image}`} alt={animal.type} />
                 </div>
                 <div className="pet-info">
                   <div className="name-gender">
@@ -92,7 +124,12 @@ function UserProfile({ username }) {
             <div className="pet-panel-content">
               <div className="top">
                 <div className="image-container">
-                  <img src={`http://127.0.0.1:8000${animals[selectedAnimal].image}`} alt={animals[selectedAnimal].type} />
+                  <img src={`http://127.0.0.1:8000/media/${currentImageIndex === 0 ? animals[selectedAnimal].image : animals[selectedAnimal][`image${currentImageIndex + 1}`]}`} alt={animals[selectedAnimal].type} />
+                  <div className='image-cycle'>
+                    <button className="prev-button" onClick={handlePrevImage}>{"<"}</button>
+                    <label> {currentImageIndex + 1} </label>
+                    <button className="next-button" onClick={handleNextImage}>{">"}</button>
+                  </div>
                 </div>
                 <div className="pet-info">
                   <h5>{animals[selectedAnimal].name}</h5>
