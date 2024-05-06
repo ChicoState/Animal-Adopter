@@ -54,13 +54,12 @@ function UserProfile({ username }) {
 
   // Fetch non-null images for a specific pet
   const getValidImages = (petIndex) => {
-    const pet = animals[petIndex]; // Accessing the pet data from the animals array
     return [
-      pet.image,
-      pet.image2,
-      pet.image3,
-      pet.image4,
-      pet.image5
+      animals[petIndex].image,
+      animals[petIndex].image2,
+      animals[petIndex].image3,
+      animals[petIndex].image4,
+      animals[petIndex].image5
     ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
   }
 
@@ -125,7 +124,7 @@ function UserProfile({ username }) {
             <div className="pet-panel-content">
               <div className="top">
                 <div className="image-container">
-                  <img src={`http://127.0.0.1:8000${currentImageIndex === 0 ? animals[selectedAnimal].image : animals[selectedAnimal][`image${currentImageIndex + 1}`]}`} alt={animals[selectedAnimal].type} />
+                  <img src={`http://127.0.0.1:8000${validImages[currentImageIndex]}`} alt={animals[selectedAnimal].type} />
                   <div className='image-cycle'>
                     <button className="prev-button" onClick={handlePrevImage}>{"<"}</button>
                     <label> {currentImageIndex + 1} </label>
