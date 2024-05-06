@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import '../App.css'
+import '../App.css';
 
 class TimeAgo extends React.Component {
   calculateTimeAgo(date) {
@@ -62,7 +62,7 @@ function AnimalListPage({ animalType }) {
   };
 
   return (
-    <div className="pet-list-container">
+    <div className="pet-list-container" style={{ paddingTop: '70px' }}>
       <div className="pet-box-container">
         {animals.map((item, index) => (
           <div key={index} className="pet-box" onClick={() => handlePetClick(index)}>
