@@ -26,4 +26,4 @@ class UserModelSerializer(serializers.ModelSerializer):
 class AnimalModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = AnimalModel
-        fields = ['name', 'age', 'gender', 'price', 'type', 'specialNeeds', 'about', 'location', 'contact', 'doesntLikeKids', 'doesntLikeMen', 'isEnergetic', 'isFixed', 'image']
+        fields = ['name', 'age', 'gender', 'price', 'type', 'specialNeeds', 'about', 'location', 'contact', 'doesntLikeKids', 'doesntLikeMen', 'isEnergetic', 'isFixed', 'image', 'image2', 'image3', 'image4', 'image5']
