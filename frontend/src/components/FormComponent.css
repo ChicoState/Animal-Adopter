@@ -58,6 +58,13 @@ body {
   align-items: center;
 }
 
+.rehome-form-page .images {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* user information section */
 .rehome-form-page .user-info {
   display: flex;

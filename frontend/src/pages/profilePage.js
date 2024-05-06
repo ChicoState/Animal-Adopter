@@ -6,6 +6,8 @@ import '../App.css';
 function UserProfile({ username }) {
   const [user, setUser] = useState(null);
   const [animals, setAnimals] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [validImages, setValidImages] = useState([]);
   const [selectedAnimal, setSelectedAnimal] = useState(null);
 
   useEffect(() => {
@@ -43,6 +45,36 @@ function UserProfile({ username }) {
 
   const handleAnimalClick = (index) => {
     setSelectedAnimal(selectedAnimal === index ? null : index);
+    if (index !== null) {
+      const filteredImages = getValidImages(index);
+      setValidImages(filteredImages);
+      setCurrentImageIndex(0);  // Start with the first valid image
+    }
+  };
+
+  // Fetch non-null images for a specific pet
+  const getValidImages = (petIndex) => {
+    return [
+      animals[petIndex].image,
+      animals[petIndex].image2,
+      animals[petIndex].image3,
+      animals[petIndex].image4,
+      animals[petIndex].image5
+    ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
+  }
+
+  // Handle the next image navigation
+  const handleNextImage = () => {
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex + 1) % validImages.length);
+    }
+  };
+
+  // Handle the previous image navigation
+  const handlePrevImage = () => {
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex - 1 + validImages.length) % validImages.length);
+    }
   };
 
   return (
@@ -92,7 +124,12 @@ function UserProfile({ username }) {
             <div className="pet-panel-content">
               <div className="top">
                 <div className="image-container">
-                  <img src={`http://127.0.0.1:8000${animals[selectedAnimal].image}`} alt={animals[selectedAnimal].type} />
+                  <img src={`http://127.0.0.1:8000${validImages[currentImageIndex]}`} alt={animals[selectedAnimal].type} />
+                  <div className='image-cycle'>
+                    <button className="prev-button" onClick={handlePrevImage}>{"<"}</button>
+                    <label> {currentImageIndex + 1} </label>
+                    <button className="next-button" onClick={handleNextImage}>{">"}</button>
+                  </div>
                 </div>
                 <div className="pet-info">
                   <h5>{animals[selectedAnimal].name}</h5>

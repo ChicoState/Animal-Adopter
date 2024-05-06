@@ -202,12 +202,57 @@ ul {
   flex-wrap: wrap;
 }
 
+/* The image and buttons */
+.pet-panel-content .image-container {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* The image itself */
 .pet-panel-content .image-container img {
   max-width: calc(100% - 30px);
   border: 3px solid #529873;
   border-radius: 15px;
   margin-bottom: 15px;
+}
+
+/* The buttons itself */
+.pet-panel-content .image-container .image-cycle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  height: 20px;
+}
+
+.pet-panel-content .image-container .prev-button {
+  background-color: #00524c;
+  border: 2px solid #529873;
+  color: white;
+  font-weight: bold;
+  font-family: inherit;
+  border-radius: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 30px;
+}
+
+.pet-panel-content .image-container .next-button {
+  background-color: #00524c;
+  border: 2px solid #529873;
+  color: white;
+  font-weight: bold;
+  font-family: inherit;
+  border-radius: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 30px;
 }
 
 /* Header and gender */
@@ -234,6 +279,8 @@ ul {
 .buttons {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 15px;
 }
 /* Styling for adopt button */
