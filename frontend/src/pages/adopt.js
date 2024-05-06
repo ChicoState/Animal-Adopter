@@ -3,6 +3,42 @@ import axios from 'axios';
 
 import '../App.css';
 
+/*
+function TagDisplay({ tags }) {
+  const trueTags = Object.entries(tags).filter(([tag, value]) => value = true).map(([tag, value]) => tag);
+
+  const tags = {
+    //add tags here
+    
+  };
+
+  return (
+    <p>
+      {trueTags.map((tag, index) => (
+        <span key={index}>{tag}</span>
+      ))}
+    </p>
+  );
+}
+*/
+
+function TagDisplay({ tags }) {
+  // Ensure tags is an object or default to an empty object
+  const tagKeys = tags ? Object.keys(tags) : [];
+
+  // Extract tag names where the value is true
+  const trueTags = tagKeys.filter(tag => tags[tag] === true);
+
+  return (
+    <div>
+      {trueTags.map((tag, index) => (
+        <span key={index}>{tag}</span>
+      ))}
+    </div>
+  );
+}
+
+
 function PetList({ pet }) {
   const [selectedPet, setSelectedPet] = useState(null);
 
