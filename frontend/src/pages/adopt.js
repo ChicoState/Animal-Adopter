@@ -154,7 +154,7 @@ function PetList({ pet }) {
                 <p>Contact: {pet[selectedPet].contact}</p>
                 <div className="tags">
                   <p>Tags: {getTags(pet[selectedPet]).join(", ")}</p>
-                  </div>
+                </div>
                 <p>Description: {pet[selectedPet].about}</p>
               </div>
             </div>

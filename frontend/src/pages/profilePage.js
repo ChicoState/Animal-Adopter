@@ -77,6 +77,22 @@ function UserProfile({ username }) {
     }
   };
 
+  const shouldDisplayTag = (value) => {
+    return value === 'true';
+  };
+
+  const getTags = (item) => {
+  const tags = [];
+  if (shouldDisplayTag(item.isFixed)) tags.push("Fixed");
+  if (shouldDisplayTag(item.doesntLikeKids)) tags.push("Dislikes kids");
+  if (shouldDisplayTag(item.doesntLikeMen)) tags.push("Dislikes men");
+  if (shouldDisplayTag(item.isEnergetic)) tags.push("Energetic");
+  if (tags.length < 1){
+    tags.push("N/A")
+  }
+  return tags;
+  };
+
   return (
     <div className="profile-page">
       {user ? (
@@ -138,6 +154,9 @@ function UserProfile({ username }) {
                   <p>Price: ${animals[selectedAnimal].price}</p>
                   <p>Location: {animals[selectedAnimal].location}</p>
                   <p>Contact: {animals[selectedAnimal].contact}</p>
+                  <div className="tags">
+                    <p>Tags: {getTags(animals[selectedAnimal]).join(", ")}</p>
+                  </div>
                   <p>Description: {animals[selectedAnimal].about}</p>
                 </div>
               </div>
