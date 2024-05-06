@@ -43,6 +43,21 @@ function PetList({ pet }) {
   const handlePetClick = (index) => {
     setSelectedPet(selectedPet === index ? null : index);
   };
+  const shouldDisplayTag = (value) => {
+        return value === 'true';
+      };
+
+  const getTags = (item) => {
+    const tags = [];
+    if (shouldDisplayTag(item.isFixed)) tags.push("Fixed");
+    if (shouldDisplayTag(item.doesntLikeKids)) tags.push("Dislikes kids");
+    if (shouldDisplayTag(item.doesntLikeMen)) tags.push("Dislikes men");
+    if (shouldDisplayTag(item.isEnergetic)) tags.push("Energetic");
+    if (tags.length < 1){
+      tags.push("N/A")
+    }
+    return tags;
+  };
 
   return (
     <div className="pet-list-container">
@@ -102,7 +117,9 @@ function PetList({ pet }) {
                 <p>Price: ${pet[selectedPet].price}</p>
                 <p>Location: {pet[selectedPet].location}</p>
                 <p>Contact: {pet[selectedPet].contact}</p>
-                <p>Tags: tags</p>
+                <div className="tags">
+                  <p>Tags: {getTags(pet[selectedPet]).join(", ")}</p>
+                  </div>
                 <p>Description: {pet[selectedPet].about}</p>
               </div>
             </div>
@@ -116,8 +133,6 @@ function PetList({ pet }) {
     </div>
   );
 }
-
-
 
 const RehomeFormPage = () => {
   const [pet, setPet] = useState([]);
