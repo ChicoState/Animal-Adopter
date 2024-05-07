@@ -11,6 +11,9 @@ def get_default_user():
 def user_image_upload(instance, filename):
     return f'user_images/{filename}'
 
+def animal_adopt_form(instance, filename):
+    return f'adopt_form/{filename}'
+
 
 class AnimalModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='animals', default=get_default_user)
@@ -33,6 +36,7 @@ class AnimalModel(models.Model):
     doesntLikeMen = models.CharField(max_length = 280, default = 'false')
     isEnergetic = models.CharField(max_length = 280, default = 'false')
     isFixed = models.CharField(max_length = 280, default = 'false')
+    adoptForm = models.FileField(upload_to=animal_adopt_form, max_length=144, null=True)
 
 class UserModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', default = '')

@@ -41,9 +41,9 @@ const YourFormComponent = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name.startsWith('image')) {
-      const index = parseInt(name.replace('image', ''));
+    const { name, value, type } = e.target;
+    if (type === 'file') {
+      const file = e.target.files[0];
       setFormData({ ...formData, [name]: e.target.files[0] });
     } else if (e.target.type === 'checkbox') {
       setFormData({ ...formData, [name]: e.target.checked ? "true" : "false" });
@@ -185,6 +185,10 @@ const YourFormComponent = () => {
           <label>
             Contact:
             <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
+          </label>
+          <label>
+            Adoption Form:
+            <input type="file" name="adoptForm" onChange={handleChange} />
           </label>
           <label>
             <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} /> Submitting multiple animals?
