@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthProvider } from './AuthContext';  // Import AuthProvider
 import AdoptPage from './pages/adopt';
@@ -8,6 +8,7 @@ import LoginPage from './pages/login';
 import Navbar from './components/NavbarComponent';
 import ProfilePage from './pages/profilePage';
 import UserFormComponent from './components/UserFormComponent';
+import AnimalListPage from './pages/animalListPage'
 
 import './home.css';
 
@@ -21,7 +22,9 @@ function HomePage({ animalTypes }) {
             <div className="top">
               <div>
                 <h5>{type.option}</h5>
-                <img src={`http://127.0.0.1:8000/media/homeImages/${type.value}.jpeg`}/>
+                <Link to={`/animals/${type.value}`}>
+                  <img src={`http://127.0.0.1:8000/media/homeImages/${type.value}.jpeg`} alt={type.option} />
+                </Link>
               </div>
             </div>
           </div>
@@ -103,6 +106,11 @@ function App() {
             <Route path="/profilePage">
               <ProfilePage />
             </Route>
+            {animalTypes.map((type, index) => (
+              <Route key={index} path={`/animals/${type.value}`}>
+                <AnimalListPage animalType={type.value} />
+              </Route>
+            ))}
           </Switch>
         </div>
       </Router>
