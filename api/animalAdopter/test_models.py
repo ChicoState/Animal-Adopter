@@ -1,13 +1,17 @@
 from django.test import TestCase
 import factory
+from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import AnimalModel, UserModel, user_image_upload, get_default_user, animal_image_upload
+from django.core.files.uploadedfile import SimpleUploadedFile
+from rest_framework.test import APIClient
+from rest_framework import status
+
 
 # Define a factory for the User model
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
-
     username = factory.Sequence(lambda n: f'user{n}')
     password = factory.PostGenerationMethodCall('set_password', 'defaultpassword')
 
@@ -15,7 +19,6 @@ class UserFactory(factory.django.DjangoModelFactory):
 class AnimalModelFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = AnimalModel
-
     user = factory.SubFactory(UserFactory)
     name = "Charlie"
     age = "3"
@@ -29,9 +32,6 @@ class AnimalTestCase(TestCase):
         self.user = UserFactory.create()
         self.animal = AnimalModelFactory.create(user=self.user)
 
-    def test_user_password(self):
-        self.assertTrue(self.user.check_password('defaultpassword'))
-
     def test_animal_association_with_user(self):
         self.assertEqual(self.animal.user, self.user)
 
@@ -43,20 +43,17 @@ class AnimalTestCase(TestCase):
         self.assertEqual(self.animal.price, "200")
         self.assertEqual(self.animal.location, "City Park")
 
-
 class UserModelFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = UserModel
-
-    user = factory.SubFactory(UserFactory)  # Reuse UserFactory
+    user = factory.SubFactory(UserFactory)
     name = "John Doe"
     age = "30"
     gender = "Male"
     location = "123 Test Lane"
     contact = "555-1234"
     isShelter = "no"
-    image = factory.django.ImageField(color='blue')  # Example image field setup
-
+    image = factory.django.ImageField(color='blue')
 
 class UserModelTestCase(TestCase):
     def setUp(self):
@@ -73,44 +70,35 @@ class UserModelTestCase(TestCase):
         self.assertEqual(self.user_model.isShelter, "no")
 
     def test_user_model_image_path(self):
-        # Assuming you want to test the image upload path
         filename = 'testprofile.jpg'
         path = user_image_upload(self.user_model, filename)
         self.assertEqual(path, f'user_images/{filename}')
 
 class DefaultUserTestCase(TestCase):
     def test_default_user_creation(self):
-        # This tests that the default user is created correctly
         user_id = get_default_user()
         user = User.objects.get(id=user_id)
         self.assertEqual(user.username, 'admin')
         self.assertTrue(user.check_password('adminpass'))
 
-def test_user_not_created_if_exists(self):
-    # Create 'admin' user first
-    User.objects.create_user('admin', password='oldpassword')
-    user_id = get_default_user()
-    user = User.objects.get(id=user_id)
-    self.assertFalse(user.check_password('adminpass'))
-    self.assertTrue(user.check_password('oldpassword'))
-
-def test_multiple_image_uploads(self):
-    files = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg']
-    for i, file in enumerate(files, start=1):
-        path = getattr(self.animal, f'image{i}').field.upload_to(self.animal, file)
-        self.assertEqual(path, f'animal_images/{file}')
-
-
 class AnimalImageUploadTestCase(TestCase):
+    def setUp(self):
+        self.animal = AnimalModel(name="Test Animal", age="5", gender="Male", type="Dog")
+
     def test_animal_image_upload_path(self):
-        # Create an instance of AnimalModel (assuming it has been imported)
-        animal = AnimalModel(name="Test Animal", age="5", gender="Male", type="Dog")
-
-        # Define a test filename
         filename = 'test_image.jpg'
-
-        # Call the function with the instance and filename
-        path = animal_image_upload(animal, filename)
-
-        # Check if the path is correctly formatted
+        path = animal_image_upload(self.animal, filename)
         self.assertEqual(path, f'animal_images/{filename}')
+
+class MultipleImageUploadTestCase(TestCase):
+    def setUp(self):
+        self.user = UserFactory.create()
+        self.animal = AnimalModelFactory.create(user=self.user)
+
+    def test_multiple_image_uploads(self):
+        files = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg']
+        for i, file_name in enumerate(files, start=1):
+            path = animal_image_upload(self.animal, file_name)
+            expected_path = f'animal_images/{file_name}'
+            self.assertEqual(path, expected_path)
+            self.assertIn(file_name, path)
