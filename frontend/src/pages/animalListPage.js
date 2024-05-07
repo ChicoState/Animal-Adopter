@@ -191,7 +191,9 @@ function AnimalListPage({ animalType }) {
             </div>
           </div>
           <div className="buttons">
+          {animals[selectedPet].adoptForm !== null && (
             <button className="adopt-button" onClick={() => downloadForm()}>Adopt Form</button>
+          )}
             <button className="close-button" onClick={() => setSelectedPet(null)}>Close</button>
           </div>
         </div>
