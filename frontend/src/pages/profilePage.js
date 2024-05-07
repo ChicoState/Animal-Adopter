@@ -77,6 +77,37 @@ function UserProfile({ username }) {
     }
   };
 
+  // Frontend component
+
+const handleDelete = async () => {
+  try {
+    const authToken = localStorage.getItem('authToken');
+    const config = {
+      headers: { Authorization: `Token ${authToken}` }
+    };
+
+    const response = await fetch(`http://127.0.0.1:8000/api/delete_animal_model/${animals[selectedAnimal].id}/`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        ...config.headers
+      }
+    });
+
+    if (response.ok) {
+      // If deletion is successful, update the animals list
+      const updatedAnimals = animals.filter((animal, index) => index !== selectedAnimal);
+      setAnimals(updatedAnimals);
+      setSelectedAnimal(null);
+    } else {
+      console.error('Failed to delete animal:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error deleting animal:', error);
+  }
+};
+
+
   return (
     <div className="profile-page">
       {user ? (
@@ -143,7 +174,7 @@ function UserProfile({ username }) {
               </div>
             </div>
             <div className="buttons">
-              <button className="adopt-button">Adopt</button>
+              <button className="adopt-button" onClick={() => handleDelete()}>Delete</button>
               <button className="close-button" onClick={() => setSelectedAnimal(null)}>Close</button>
             </div>
           </div>

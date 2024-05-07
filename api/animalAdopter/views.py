@@ -134,3 +134,12 @@ def create_animal_model(request):
         return JsonResponse({'message': 'Animal model created successfully', 'id': animal.id})
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
+    
+def delete_animal_model(request, pk):
+    animal = get_object_or_404(AnimalModel, pk=pk)
+    
+    if request.method == 'DELETE':
+        animal.delete()
+        return JsonResponse({'message': 'Animal deleted successfully'}, status=204)
+    
+    return JsonResponse({'messsage': 'Invalid method'}, status=405)
