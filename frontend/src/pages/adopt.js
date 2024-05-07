@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import '../App.css';
 
-
 class TimeAgo extends React.Component {
   calculateTimeAgo(date) {
     const currentDate = new Date();
@@ -36,12 +35,70 @@ class TimeAgo extends React.Component {
   }
 }
 
-
 function PetList({ pet }) {
   const [selectedPet, setSelectedPet] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [validImages, setValidImages] = useState([]);
 
+  // Handle clicking on a pet
   const handlePetClick = (index) => {
     setSelectedPet(selectedPet === index ? null : index);
+    if (index !== null) {
+      const filteredImages = getValidImages(index);
+      setValidImages(filteredImages);
+      setCurrentImageIndex(0);  // Start with the first valid image
+    }
+  };
+  const shouldDisplayTag = (value) => {
+        return value === 'true';
+      };
+
+  const getTags = (item) => {
+    const tags = [];
+    if (shouldDisplayTag(item.isFixed)) tags.push("Fixed");
+    if (shouldDisplayTag(item.doesntLikeKids)) tags.push("Dislikes kids");
+    if (shouldDisplayTag(item.doesntLikeMen)) tags.push("Dislikes men");
+    if (shouldDisplayTag(item.isEnergetic)) tags.push("Energetic");
+    if (tags.length < 1){
+      tags.push("N/A")
+    }
+    return tags;
+  };
+
+  // Fetch non-null images for a specific pet
+  const getValidImages = (petIndex) => {
+    return [
+      pet[petIndex].image,
+      pet[petIndex].image2,
+      pet[petIndex].image3,
+      pet[petIndex].image4,
+      pet[petIndex].image5
+    ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
+  }
+
+  // Handle the next image navigation
+  const handleNextImage = () => {
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex + 1) % validImages.length);
+    }
+  };
+
+  // Handle the previous image navigation
+  const handlePrevImage = () => {
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex - 1 + validImages.length) % validImages.length);
+    }
+  };
+
+  const downloadForm = () => {
+    const adoptFormURL = `http://127.0.0.1:8000/media/${pet[selectedPet].adoptForm}`;
+
+    const link = document.createElement('a');
+    link.href = adoptFormURL;
+    link.download = `${pet[selectedPet].name}_adopt_form.pdf`;
+    document.body.appendChild(link);
+
+    link.click();
   };
 
   return (
@@ -82,7 +139,12 @@ function PetList({ pet }) {
           <div className="pet-panel-content">
             <div className="top">
               <div className="image-container">
-                <img src={`http://127.0.0.1:8000/media/${pet[selectedPet].image}`} alt={pet[selectedPet].type} />
+                <img src={`http://127.0.0.1:8000/media/${validImages[currentImageIndex]}`} alt={pet[selectedPet].type} />
+                <div className='image-cycle'>
+                  <button className="prev-button" onClick={handlePrevImage}>{"<"}</button>
+                  <label> {currentImageIndex + 1} </label>
+                  <button className="next-button" onClick={handleNextImage}>{">"}</button>
+                </div>
               </div>
               <div className="pet-info">
                 <div className="name-gender">
@@ -102,13 +164,15 @@ function PetList({ pet }) {
                 <p>Price: ${pet[selectedPet].price}</p>
                 <p>Location: {pet[selectedPet].location}</p>
                 <p>Contact: {pet[selectedPet].contact}</p>
-                <p>Tags: tags</p>
+                <div className="tags">
+                  <p>Tags: {getTags(pet[selectedPet]).join(", ")}</p>
+                </div>
                 <p>Description: {pet[selectedPet].about}</p>
               </div>
             </div>
           </div>
           <div className="buttons">
-            <button className="adopt-button" >Adopt</button>
+            <button className="adopt-button" onClick={() => downloadForm()}>Adopt Form</button>
             <button className="close-button" onClick={() => setSelectedPet(null)}>Close</button>
           </div>
         </div>
@@ -116,7 +180,6 @@ function PetList({ pet }) {
     </div>
   );
 }
-
 
 
 const RehomeFormPage = () => {

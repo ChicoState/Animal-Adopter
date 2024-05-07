@@ -17,12 +17,17 @@ const YourFormComponent = () => {
     isEnergetic: '',
     isFixed: '',
     image: null,
+    image2: null,
+    image3: null,
+    image4: null,
+    image5: null,
     username: ''
   };
 
   const [formData, setFormData] = useState(initialFormData);
   const [successMessage, setSuccessMessage] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+  const [numImages, setNumImages] = useState(1);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -36,8 +41,9 @@ const YourFormComponent = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'image') {
+    const { name, value, type } = e.target;
+    if (type === 'file') {
+      const file = e.target.files[0];
       setFormData({ ...formData, [name]: e.target.files[0] });
     } else if (e.target.type === 'checkbox') {
       setFormData({ ...formData, [name]: e.target.checked ? "true" : "false" });
@@ -54,7 +60,7 @@ const YourFormComponent = () => {
     });
 
     try {
-      if(isChecked) {
+      if (isChecked) {
         const response = await axios.post('http://127.0.0.1:8000/api/animalAdopter/create_animal_model', data);
         console.log('Data saved successfully. Animal ID:', response.data.id);
         setSuccessMessage('Animal information saved successfully! Please enter your next animal.');  // Set success message
@@ -65,11 +71,41 @@ const YourFormComponent = () => {
         setFormData(initialFormData);  // Clear form data after successful save
         setSuccessMessage('Animal information saved successfully!');  // Set success message
         setTimeout(() => setSuccessMessage(''), 3000);  // Clear message after 3 seconds
-    }
+      }
     } catch (error) {
       console.error('Error saving data:', error);
     }
   };
+
+  const handleAddImage = () => {
+    if (numImages < 5) {
+      setNumImages(prevNumImages => prevNumImages + 1);
+    }
+    else {
+      setSuccessMessage('You have reached the maximum number of images.');
+    }
+  };
+
+  const handleRemoveImage = (index) => {
+    if (numImages) {
+      setNumImages(prevNumImages => prevNumImages - 1);
+    }
+    else {
+      setSuccessMessage('You must have at least one image.');
+    }
+  };
+
+  const renderImageInputs = () => {
+    const imageInputs = [];
+    for (let i = 2; i <= numImages; i++) {
+      imageInputs.push(
+        <label key={i}>
+          <input type="file" name={`image${i}`} onChange={handleChange} />
+        </label>
+      );
+    }
+    return imageInputs;
+  }
 
   return (
     <div className="rehome-form-page">
@@ -115,12 +151,12 @@ const YourFormComponent = () => {
             </select>
           </label>
           <div className="special-needs">
-            <label>Special Accommodations:</label> 
+            <label>Special Accommodations:</label>
             <label>
               <input type="checkbox" name="doesntLikeKids" checked={formData.doesntLikeKids === "true"} onChange={handleChange} /> Doesn't like kids.
             </label>
             <label>
-              <input type="checkbox" name="doesntLikeMen" checked={formData.doesntLikeMen === "true"} onChange={handleChange} /> Doesn't like men. 
+              <input type="checkbox" name="doesntLikeMen" checked={formData.doesntLikeMen === "true"} onChange={handleChange} /> Doesn't like men.
             </label>
             <label>
               <input type="checkbox" name="isEnergetic" checked={formData.isEnergetic === "true"} onChange={handleChange} /> Very Energetic.
@@ -133,10 +169,15 @@ const YourFormComponent = () => {
             About:
             <input type="text" name="about" value={formData.about} onChange={handleChange} />
           </label>
-          <label>
-            Image:
+          <div className='images'>
+            <label>Images:</label>
             <input type="file" name="image" onChange={handleChange} />
-          </label>
+            {renderImageInputs()}
+            <div className='image-handlers'>
+              <button type="button" onClick={handleAddImage}>+</button>
+              <button type="button" onClick={handleRemoveImage}>-</button>
+            </div>
+          </div>
           <label>
             Location:
             <input type="text" name="location" value={formData.location} onChange={handleChange} />
@@ -144,6 +185,10 @@ const YourFormComponent = () => {
           <label>
             Contact:
             <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
+          </label>
+          <label>
+            Adoption Form:
+            <input type="file" name="adoptForm" onChange={handleChange} />
           </label>
           <label>
             <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} /> Submitting multiple animals?
