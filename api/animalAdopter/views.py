@@ -134,3 +134,30 @@ def create_animal_model(request):
         return JsonResponse({'message': 'Animal model created successfully', 'id': animal.id})
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+def animals_by_type_view(request, animal_type):
+    # Query animals by type
+    animals = AnimalModel.objects.filter(type=animal_type)
+
+    # Serialize animals to JSON
+    data = [{'name': animal.name,
+             'age': animal.age,
+             'gender': animal.gender,
+             'price': animal.price,
+             'type': animal.type,
+             'location': animal.location,
+             'contact': animal.contact,
+             'about': animal.about,
+             'doesntLikeKids': animal.doesntLikeKids,
+             'doesntLikeMen': animal.doesntLikeMen,
+             'isEnergetic': animal.isEnergetic,
+             'isFixed': animal.isFixed,
+             'image': str(animal.image),
+             'image2': str(animal.image2),
+             'image3': str(animal.image3),
+             'image4': str(animal.image4),
+             'image5': str(animal.image5),
+             'adoptForm': str(animal.adoptForm)
+        } for animal in animals]
+
+    return JsonResponse({'animals': data})
