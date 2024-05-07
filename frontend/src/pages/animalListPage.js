@@ -56,9 +56,68 @@ function AnimalListPage({ animalType }) {
   }, [animalType]);
 
   const [selectedPet, setSelectedPet] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [validImages, setValidImages] = useState([]);
 
   const handlePetClick = (index) => {
     setSelectedPet(selectedPet === index ? null : index);
+    if (index !== null) {
+      const filteredImages = getValidImages(index);
+      setValidImages(filteredImages);
+      setCurrentImageIndex(0);  // Start with the first valid image
+    }
+  };
+
+  const shouldDisplayTag = (value) => {
+        return value === 'true';
+      };
+
+  const getTags = (item) => {
+    const tags = [];
+    if (shouldDisplayTag(item.isFixed)) tags.push("Fixed");
+    if (shouldDisplayTag(item.doesntLikeKids)) tags.push("Dislikes kids");
+    if (shouldDisplayTag(item.doesntLikeMen)) tags.push("Dislikes men");
+    if (shouldDisplayTag(item.isEnergetic)) tags.push("Energetic");
+    if (tags.length < 1){
+      tags.push("N/A")
+    }
+    return tags;
+  };
+
+  // Fetch non-null images for a specific pet
+  const getValidImages = (petIndex) => {
+    return [
+      animals[petIndex].image,
+      animals[petIndex].image2,
+      animals[petIndex].image3,
+      animals[petIndex].image4,
+      animals[petIndex].image5
+    ].filter(img => img);  // Filter out falsy values (including null, undefined, "")
+  }
+
+  // Handle the next image navigation
+  const handleNextImage = () => {
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex + 1) % validImages.length);
+    }
+  };
+
+  // Handle the previous image navigation
+  const handlePrevImage = () => {
+    if (validImages.length > 0) {
+      setCurrentImageIndex((currentImageIndex - 1 + validImages.length) % validImages.length);
+    }
+  };
+
+  const downloadForm = () => {
+    const adoptFormURL = `http://127.0.0.1:8000/media/${animals[selectedPet].adoptForm}`;
+
+    const link = document.createElement('a');
+    link.href = adoptFormURL;
+    link.download = `${animals[selectedPet].name}_adopt_form.pdf`;
+    document.body.appendChild(link);
+
+    link.click();
   };
 
   return (
@@ -98,9 +157,14 @@ function AnimalListPage({ animalType }) {
         <div className="pet-panel show">
           <div className="pet-panel-content">
             <div className="top">
-              <div className="image-container">
-                <img src={`http://127.0.0.1:8000/media/${animals[selectedPet].image}`} alt={animals[selectedPet].type} />
+            <div className="image-container">
+              <img src={`http://127.0.0.1:8000/media/${validImages[currentImageIndex]}`} alt={animals[selectedPet].type} />
+              <div className='image-cycle'>
+                <button className="prev-button" onClick={handlePrevImage}>{"<"}</button>
+                <label> {currentImageIndex + 1} </label>
+                <button className="next-button" onClick={handleNextImage}>{">"}</button>
               </div>
+            </div>
               <div className="pet-info">
                 <div className="name-gender">
                   <h5>{animals[selectedPet].name}</h5>
@@ -119,13 +183,15 @@ function AnimalListPage({ animalType }) {
                 <p>Price: ${animals[selectedPet].price}</p>
                 <p>Location: {animals[selectedPet].location}</p>
                 <p>Contact: {animals[selectedPet].contact}</p>
-                <p>Tags: tags</p>
+                <div className="tags">
+                  <p>Tags: {getTags(animals[selectedPet]).join(", ")}</p>
+                </div>
                 <p>Description: {animals[selectedPet].about}</p>
               </div>
             </div>
           </div>
           <div className="buttons">
-            <button className="adopt-button" >Adopt</button>
+            <button className="adopt-button" onClick={() => downloadForm()}>Adopt Form</button>
             <button className="close-button" onClick={() => setSelectedPet(null)}>Close</button>
           </div>
         </div>
