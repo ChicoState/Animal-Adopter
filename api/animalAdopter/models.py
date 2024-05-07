@@ -1,12 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 
 
 def animal_image_upload(instance, filename):
     return f'animal_images/{filename}'
 
 def get_default_user():
-    return User.objects.get(username='admin').id
+    user, created = User.objects.get_or_create(
+    username='admin',
+    defaults={
+        'password': 'adminpass',
+        'last_login': now(),
+        'email': 'admin@example.com'
+    })
+    if created:
+        user.set_password('adminpass')
+        user.save()
+    return user.id
 
 def user_image_upload(instance, filename):
     return f'user_images/{filename}'

@@ -3,3 +3,8 @@ djangorestframework==3.12.*
 django-cors-headers==3.10.*
 Pillow==8.4.*
 django-rest-authtoken
+factory-boy==3.3.0
+Faker==25.0.1
+python-dateutil==2.9.0.post0
+six==1.16.0
+coverage==7.5.1
