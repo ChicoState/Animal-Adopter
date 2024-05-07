@@ -127,7 +127,8 @@ def create_animal_model(request):
             image2=request.FILES.get('image2', None),
             image3=request.FILES.get('image3', None),
             image4=request.FILES.get('image4', None),
-            image5=request.FILES.get('image5', None)
+            image5=request.FILES.get('image5', None),
+            adoptForm=request.FILES.get('adoptForm', None)
         )
         animal.save()
         return JsonResponse({'message': 'Animal model created successfully', 'id': animal.id})

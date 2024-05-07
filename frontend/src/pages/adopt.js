@@ -89,6 +89,18 @@ function PetList({ pet }) {
       setCurrentImageIndex((currentImageIndex - 1 + validImages.length) % validImages.length);
     }
   };
+
+  const downloadForm = () => {
+    const adoptFormURL = `http://127.0.0.1:8000/media/${pet[selectedPet].adoptForm}`;
+
+    const link = document.createElement('a');
+    link.href = adoptFormURL;
+    link.download = `${pet[selectedPet].name}_adopt_form.pdf`;
+    document.body.appendChild(link);
+
+    link.click();
+  };
+
   return (
     <div className="pet-list-container">
       <div className="pet-box-container">
@@ -160,7 +172,7 @@ function PetList({ pet }) {
             </div>
           </div>
           <div className="buttons">
-            <button className="adopt-button" >Adopt</button>
+            <button className="adopt-button" onClick={() => downloadForm()}>Adopt Form</button>
             <button className="close-button" onClick={() => setSelectedPet(null)}>Close</button>
           </div>
         </div>
