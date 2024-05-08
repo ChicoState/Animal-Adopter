@@ -29,5 +29,11 @@ describe('App Component', () => {
     // Optionally, check the state or other effects
     expect(screen.queryByText('Dogs')).toBeInTheDocument(); // Example if you had specific outputs to check
     expect(screen.queryByText('Cats')).toBeInTheDocument();
+    expect(screen.queryByText('Rodents')).toBeInTheDocument();
+    expect(screen.queryByText('Fish')).toBeInTheDocument();
+    expect(screen.queryByText('Birds')).toBeInTheDocument();
+    expect(screen.queryByText('Reptile')).toBeInTheDocument();
+    expect(screen.queryByText('Horse')).toBeInTheDocument();
+    expect(screen.queryByText('Other')).toBeInTheDocument();
   });
 });
