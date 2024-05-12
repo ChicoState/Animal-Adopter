@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import '../App.css';
 
@@ -74,6 +75,30 @@ function UserProfile({ username }) {
   const handlePrevImage = () => {
     if (validImages.length > 0) {
       setCurrentImageIndex((currentImageIndex - 1 + validImages.length) % validImages.length);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const csrftoken = Cookies.get('csrftoken');
+
+      const response = await fetch(`http://127.0.0.1:8000/api/animalAdopter/delete_animal_model/${id}/`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken
+        },
+      });
+
+      if (response.ok) {
+        setAnimals(prevAnimals => prevAnimals.filter(animal => animal.id !== id));
+        setSelectedAnimal(null);
+        console.log('Animal deleted successfully');
+      } else {
+        console.error('Failed to delete animal');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
     }
   };
 
@@ -162,7 +187,7 @@ function UserProfile({ username }) {
               </div>
             </div>
             <div className="buttons">
-              <button className="adopt-button">Adopt</button>
+              <button className="adopt-button" onClick={() => handleDelete(animals[selectedAnimal].id)}>Delete</button>
               <button className="close-button" onClick={() => setSelectedAnimal(null)}>Close</button>
             </div>
           </div>
