@@ -1,8 +1,10 @@
 from django.contrib import admin
 from . import models
-from .models import UserModel
+from .models import UserModel, AnimalModel
 
-admin.site.register(models.AnimalModel)
+@admin.register(AnimalModel)
+class AnimalModelAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in AnimalModel._meta.fields]
 
 @admin.register(UserModel)
 class UserModelAdmin(admin.ModelAdmin):
