@@ -73,40 +73,84 @@ const LoginPage = () => {
             ) : (
                 <>
                     {form === 'login' ? (
-                        <form onSubmit={handleLogin} className="login-form">
-                            <h2>Login to Your Account</h2>
-                            <div className="form-group">
-                                <label>Username:</label>
-                                <input type="text" name="username" value={credentials.username} onChange={handleChange} required />
-                            </div>
-                            <div className="form-group">
-                                <label>Password:</label>
-                                <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-                            </div>
-                            <button type="submit">Log In</button>
-                            <p>Don't have an account? <button type="button" onClick={() => setForm('signup')}>Sign Up</button></p>
+                        <div className="auth-forms-container">
+                        <form className="login-form" onSubmit={handleLogin}>
+                          <h2>Login to Your Account</h2>
+                          <div className="form-group">
+                            <label htmlFor="username">Username:</label>
+                            <input
+                              id="username"
+                              type="text"
+                              name="username"
+                              value={credentials.username}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label htmlFor="password">Password:</label>
+                            <input
+                              id="password"
+                              type="password"
+                              name="password"
+                              value={credentials.password}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+                          <button type="submit">Log In</button>
+                          <p>
+                            Don't have an account? 
+                            <button type="button" onClick={() => setForm('signup')}>Sign Up</button>
+                          </p>
                         </form>
+                      </div>
                     ) : (
-                        <form onSubmit={handleSignup} className="signup-form">
-                            <h2>Create Your Account</h2>
-                            <div className="form-group">
-                                <label>Username:</label>
-                                <input type="text" name="username" value={credentials.username} onChange={handleChange} required />
-                            </div>
-                            <div className="form-group">
-                                <label>Email:</label>
-                                <input type="email" name="email" value={credentials.email} onChange={handleChange} required />
-                            </div>
-                            <div className="form-group">
-                                <label>Password:</label>
-                                <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-                            </div>
-                            <button type="submit">Sign Up</button>
-                            <p>Already have an account? <button type="button" onClick={() => setForm('login')}>Log In</button></p>
-                        </form>
-                    )}
-                </>
-            )}
+                        <div className="auth-forms-container">
+                            <form className="signup-form" onSubmit={handleSignup}>
+                                <h2>Create Your Account</h2>
+                                <div className="form-group">
+                                <label htmlFor="signup-username">Username:</label>
+                                <input
+                                    id="signup-username"
+                                    type="text"
+                                    name="username"
+                                    value={credentials.username}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                </div>
+                                <div className="form-group">
+                                <label htmlFor="signup-email">Email:</label>
+                                <input
+                                    id="signup-email"
+                                    type="email"
+                                    name="email"
+                                    value={credentials.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                </div>
+                                <div className="form-group">
+                                <label htmlFor="signup-password">Password:</label>
+                                <input
+                                    id="signup-password"
+                                    type="password"
+                                    name="password"
+                                    value={credentials.password}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                </div>
+    <button type="submit">Sign Up</button>
+    <p>
+      Already have an account? 
+      <button type="button" onClick={() => setForm('login')}>Log In</button>
+    </p>
+  </form>
+</div>
+)}
+    </>)}
             {error && <div className="error-message">{error}</div>}
         </div>
     );
