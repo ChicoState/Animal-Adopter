@@ -37,7 +37,7 @@ describe('UserProfile Component', () => {
     fireEvent.click(allBuddyTexts[0]);
 
     // Debug output immediately after clicking
-    await waitFor(() => screen.debug());
+    // await waitFor(() => screen.debug());
 
     // Use regex and 'waitFor' to handle possible asynchronous updates and flexible text matching
     await waitFor(() => {
