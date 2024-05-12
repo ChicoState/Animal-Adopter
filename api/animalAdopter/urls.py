@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from .views import index
 from .views import get_animal_models
-from .views import create_animal_model, delete_animal_model, user_profile_view, user_animals_view, animals_by_type_view
+from .views import create_animal_model, user_profile_view, user_animals_view, animals_by_type_view
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
@@ -28,7 +28,6 @@ urlpatterns = [
     path('', index),
     path('api/animalAdopter/models', get_animal_models, name='get_animal_models'),
     path('api/animalAdopter/create_animal_model', create_animal_model, name='create_animal_model'),
-    path('api/animalAdopter/delete_animal_model/<int:animal_id>/', delete_animal_model, name='delete_animal_model'),
     path('api/login/', LoginView.as_view(), name='login'),
     path('api/logout/', LogoutView.as_view(), name='logout'),
     path('api/signup/', SignUpView.as_view(), name='signup'),

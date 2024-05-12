@@ -135,16 +135,6 @@ def create_animal_model(request):
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
-def delete_animal_model(request, animal_id):
-    if request.method == 'DELETE':
-        animal = get_object_or_404(AnimalModel, id=animal_id)
-
-        animal.delete()
-
-        return JsonResponse({'message': 'Animal model deleted successfully'})
-    else:
-        return JsonResponse({'error': 'Method not allowed'}, status=405)
-
 def animals_by_type_view(request, animal_type):
     # Query animals by type
     animals = AnimalModel.objects.filter(type=animal_type)
