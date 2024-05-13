@@ -3,6 +3,38 @@ import axios from 'axios';
 
 import '../App.css';
 
+class TimeAgo extends React.Component {
+  calculateTimeAgo(date) {
+    const currentDate = new Date();
+    const pastDate = new Date(date);
+
+    const timeDifference = currentDate - pastDate;
+
+    const yearsAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365));
+    const monthsAgo = Math.floor((timeDifference % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+
+    return { years: yearsAgo, months: monthsAgo };
+  }
+
+  render() {
+    const { date } = this.props;
+    const { years, months } = this.calculateTimeAgo(date);
+
+    if (years > 0) {
+      return (
+        <div>
+          <p>{years} year{years !== 1 ? 's' : ''}</p>
+          <p>{months} month{months !== 1 ? 's' : ''} old</p>
+        </div>
+      );
+    } else if (months > 0) {
+      return <p>{months} month{months !== 1 ? 's' : ''} old</p>;
+    } else {
+      return <p>&lt; 1 month old</p>;
+    }
+  }
+}
+
 function UserProfile({ username }) {
   const [user, setUser] = useState(null);
   const [animals, setAnimals] = useState([]);
@@ -126,8 +158,8 @@ function UserProfile({ username }) {
                       )}
                     </div>
                   </div>
-                  <p>Breed: {animal.type}</p>
-                  <p>Age: {animal.age}</p>
+                  <p>Breed: {animal.breed}</p>
+                  <p>Age: <TimeAgo date={animal.age} /></p>
                   <p>Price: ${animal.price}</p>
                   <p>Location: {animal.location}</p>
                 </div>
@@ -149,8 +181,8 @@ function UserProfile({ username }) {
                 </div>
                 <div className="pet-info">
                   <h5>{animals[selectedAnimal].name}</h5>
-                  <p>Breed: {animals[selectedAnimal].type}</p>
-                  <p>Age: {animals[selectedAnimal].age}</p>
+                  <p>Breed: {animals[selectedAnimal].breed}</p>
+                  <p>Age: <TimeAgo date={animals[selectedAnimal].age} /></p>
                   <p>Price: ${animals[selectedAnimal].price}</p>
                   <p>Location: {animals[selectedAnimal].location}</p>
                   <p>Contact: {animals[selectedAnimal].contact}</p>
