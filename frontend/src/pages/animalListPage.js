@@ -143,7 +143,7 @@ function AnimalListPage({ animalType }) {
                   </div>
                 </div>
               </div>
-              <p>Breed: {item.type}</p>
+              <p>Breed: {item.breed}</p>
               <p>Age: <TimeAgo date={item.age} /></p>
               <p>Price: ${item.price}</p>
               <p>Location: {item.location}</p>
@@ -178,7 +178,7 @@ function AnimalListPage({ animalType }) {
                     )}
                   </div>
                 </div>
-                <p>Breed: {animals[selectedPet].type}</p>
+                <p>Breed: {animals[selectedPet].breed}</p>
                 <p>Age: <TimeAgo date={animals[selectedPet].age} /></p>
                 <p>Price: ${animals[selectedPet].price}</p>
                 <p>Location: {animals[selectedPet].location}</p>
