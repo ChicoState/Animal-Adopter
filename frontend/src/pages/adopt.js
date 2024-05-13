@@ -124,7 +124,7 @@ function PetList({ pet }) {
                   </div>
                 </div>
               </div>
-              <p>Breed: {item.type}</p>
+              <p>Breed: {item.breed}</p>
               <p>Age: <TimeAgo date={item.age} /></p>
               <p>Price: ${item.price}</p>
               <p>Location: {item.location}</p>
@@ -159,7 +159,7 @@ function PetList({ pet }) {
                     )}
                   </div>
                 </div>
-                <p>Breed: {pet[selectedPet].type}</p>
+                <p>Breed: {pet[selectedPet].breed}</p>
                 <p>Age: <TimeAgo date={pet[selectedPet].age} /></p>
                 <p>Price: ${pet[selectedPet].price}</p>
                 <p>Location: {pet[selectedPet].location}</p>

@@ -28,6 +28,7 @@ const YourFormComponent = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [numImages, setNumImages] = useState(1);
+  const [breeds, setBreeds] = useState([]);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -49,6 +50,10 @@ const YourFormComponent = () => {
       setFormData({ ...formData, [name]: e.target.checked ? "true" : "false" });
     } else {
       setFormData({ ...formData, [name]: value });
+    }
+
+    if (name === 'type') {
+      updateBreedOptions(value);
     }
   };
 
@@ -107,6 +112,40 @@ const YourFormComponent = () => {
     return imageInputs;
   }
 
+  function updateBreedOptions(type) {
+    const breedsByType = {
+      dog: ['Alaskan Malamute', 'Australian Shepherd', 'Basset Hound', 'Beagle', 'Belgian Malinois', 'Bichon Frise',
+       'Border Collie', 'Boston Terrier', 'Boxer', 'Bulldog', 'Bullmastiff', 'Bull Terrier', 'Cairn Terrier', 'Cavalier King Charles Spaniel',
+        'Chesapeake Bay Retriever', 'Chinese Shar-Pei', 'Cocker Spaniel', 'Dachshund', 'Dalmatian', 'Doberman Pinscher', 'English Springer Spaniel',
+         'French Bulldog', 'German Shepherd', 'Golden Retriever', 'Great Dane', 'Havanese', 'Italian Greyhound', 'Labrador Retriever', 'Lhasa Apso',
+          'Maltese', 'Miniature Pinscher', 'Miniature Schnauzer', 'Newfoundland', 'Pembroke Welsh Corgi', 'Pomeranian', 'Portuguese Water Dog', 'Poodle',
+           'Rhodesian Ridgeback', 'Rottweiler', 'Shetland Sheepdog', 'Shiba Inu', 'Shih Tzu', 'Siberian Husky', 'Staffordshire Bull Terrier', 'Vizsla',
+            'Weimaraner', 'West Highland White Terrier', 'Yorkshire Terrier', 'Other'],
+      cat: ['Abyssinian', 'American Bobtail', 'American Curl', 'American Shorthair', 'American Wirehair', 'Balinese', 'Bengal', 'Birman', 'Bombay',
+       'British Shorthair', 'Burmese', 'Chartreux', 'Cornish Rex', 'Devon Rex', 'Egyptian Mau', 'Exotic Shorthair', 'Havana Brown', 'Himalayan',
+        'Japanese Bobtail', 'Javanese', 'Korat', 'Maine Coon', 'Manx', 'Munchkin', 'Nebelung', 'Norwegian Forest Cat', 'Ocicat', 'Oriental', 'Persian',
+         'Pixiebob', 'Ragamuffin', 'Ragdoll', 'Russian Blue', 'Scottish Fold', 'Selkirk Rex', 'Siamese', 'Siberian', 'Singapura', 'Somali', 'Sphynx',
+          'Tonkinese', 'Turkish Angora', 'Turkish Van', 'York Chocolate', 'Australian Mist', 'Chausie', 'Cymric', 'Sokoke', 'Other'],
+      rodent:['African Pygmy Hedgehog', 'Capybara', 'Chinchilla', 'Degu', 'Dwarf Hamster', 'Flying Squirrel', 'Ferret', 'Gambian Pouched Rat',
+       'Gerbil', 'Guinea Pig', 'Hamster', 'Jerboa', 'Mouse', 'Naked Mole Rat', 'Porcupine', 'Prairie Dog', 'Rat', 'Sugar Glider', 'Squirrel', 'Duprasi', 'Other'],
+      fish:['Angelfish', 'Barb', 'Betta Fish', 'Catfish', 'Cichlid', 'Clownfish', 'Discus', 'Gourami', 'Goldfish', 'Guppy', 'Koi', 'Molly', 'Neon Tetra',
+       'Plecostomus', 'Platy', 'Rainbowfish', 'Rasbora', 'Swordtail', 'Tetra', 'Zebrafish', 'Other'],
+      bird:['Budgerigar', 'Canary', 'Cockatiel', 'Cockatoo', 'Conure', 'Dove', 'Eclectus Parrot', 'Finch', 'Lovebird', 'Macaw', 'Parakeet',
+       'Parrotlet', 'Pionus Parrot', 'Quaker Parrot', 'Senegal Parrot', 'Sun Conure', 'Toucan', 'African Grey Parrot', 'Indian Ringneck Parakeet', 'Rosella', 'Other'],
+      reptile:['Bearded Dragon', 'Boa Constrictor', 'Corn Snake', 'Crested Gecko', 'Leopard Gecko', 'Ball Python', 'Red-Eared Slider', 'Russian Tortoise',
+       'Blue Tongue Skink', 'Green Iguana', 'Red-Footed Tortoise', 'Sulcata Tortoise', 'Veiled Chameleon', 'Leopard Tortoise', 'Painted Turtle',
+        'African Fat-Tailed Gecko', 'Kingsnake', 'Milk Snake', 'Tegu', 'Uromastyx', 'Other'],
+      horse:['Appaloosa', 'Arabian', 'Clydesdale', 'Friesian', 'Hanoverian', 'Irish Draught', 'Morgan', 'Mustang', 'Paint Horse', 'Palomino',
+       'Quarter Horse', 'Shetland Pony', 'Thoroughbred', 'Welsh Pony', 'Andalusian', 'Haflinger', 'Pony of the Americas', 'Tennessee Walking Horse',
+        'Miniature Horse', 'Percheron', 'Other'],
+      other:['Other'],
+    };
+
+    const selectedBreeds = breedsByType[type] || [];
+
+    setBreeds(selectedBreeds);
+  }
+
   return (
     <div className="rehome-form-page">
       <div className="form">
@@ -150,6 +189,15 @@ const YourFormComponent = () => {
               <option value="other">Other</option>
             </select>
           </label>
+          <label>
+            Breed:
+            <input type="text" list="breed" name="breed" value={formData.breed} onChange={handleChange} />
+              <datalist id="breed">
+                {breeds.map(breed => (
+                  <option key={breed} value={breed}>{breed}</option>
+                ))}
+              </datalist>
+            </label>
           <div className="special-needs">
             <label>Special Accommodations:</label>
             <label>

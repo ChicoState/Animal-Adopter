@@ -33,6 +33,7 @@ class AnimalModel(models.Model):
     gender = models.CharField(max_length = 280)
     price = models.CharField(max_length = 280)
     type = models.CharField(max_length = 280)
+    breed = models.CharField(max_length = 280, default = '')
     specialNeeds = models.CharField(max_length = 280, default = '')
     about = models.CharField(max_length = 280)
     location = models.CharField(max_length = 280)
