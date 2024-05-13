@@ -194,7 +194,6 @@ function UserProfile({ username }) {
               </div>
             </div>
             <div className="buttons">
-              <button className="adopt-button">Adopt</button>
               <button className="close-button" onClick={() => setSelectedAnimal(null)}>Close</button>
             </div>
           </div>
